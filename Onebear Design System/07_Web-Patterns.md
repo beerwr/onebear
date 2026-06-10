@@ -333,6 +333,20 @@ Gofive logo + copyright
 
 ---
 
+## 📐 Layout Rules (กฎ)
+
+กฎที่ผูกกับการทำเว็บ ใช้อ้างอิงได้ทั้งคนและ AI (ดู `CLAUDE.md` ที่ root repo ด้วย)
+
+### R1 · Cut screen ต้องชิด edge
+
+เมื่อ **screen / app mockup ถูกตัดล่าง** (crop ไม่โชว์เต็ม) — ก้นที่ถูกตัด **ต้องชิดขอบล่างของ section/band ที่ครอบมันเสมอ** ห้ามลอยโดยมีช่องว่าง (หรือ fade) คั่นก่อนถึงขอบ section
+
+- **ทำไม:** screen ตัดที่มีช่องว่างใต้มันอ่านว่า "ผิดพลาด/ลอย" — การให้ก้นชิดขอบทำให้ดูเป็น crop ที่ตั้งใจ สะอาด
+- **วิธีทำ:** ครอบ hero content + screen ไว้ใน band `relative` แล้ววาง background (เช่น aurora image) เป็น `absolute inset-0` เพื่อให้ความสูง band ปรับตามเนื้อหาและจบพอดีก้น screen (responsive-safe, gap = 0). ให้ screen เป็น element สุดท้ายใน band ไม่มี margin/padding ล่าง และเอา fade-to-white ที่ขอบตัดออก. ตรวจ `band.bottom − screen.bottom === 0` ทุก breakpoint
+- **ใช้จริงที่:** `index.html` → `.hero-band` + `.hero-aurora`
+
+---
+
 ## 🔗 Related
 
 - [[04_Buttons]] — ปุ่มแต่ละ variant

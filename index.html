@@ -12,8 +12,8 @@
         "colors": {
                 "secondary-container": "#7DDECE",
                 "on-primary-fixed": "#002111",
-                "surface-bright": "#faf9f5",
-                "background": "#faf9f5",
+                "surface-bright": "#ffffff",
+                "background": "#ffffff",
                 "error": "#ba1a1a",
                 "surface-border": "#E5E4DE",
                 "tertiary-container": "#e2dfe2",
@@ -26,7 +26,7 @@
                 "primary-container": "#41C3A8",
                 "surface-tint": "#41C3A8",
                 "accent-lavender": "#7DDECE",
-                "surface": "#faf9f5",
+                "surface": "#ffffff",
                 "on-surface": "#313937",
                 "outline-variant": "#b9cbbd",
                 "surface-variant": "#e2e3e0",
@@ -374,6 +374,27 @@
         .mock-win{ background:#fff; border:1px solid #E5E4DE; border-radius:24px; overflow:hidden; box-shadow:0 12px 40px rgba(0,0,0,.08); }
         .mock-bar{ display:flex; align-items:center; gap:6px; height:36px; padding:0 14px; background:#f3f4f1; border-bottom:1px solid #E5E4DE; }
         .mock-dot{ width:10px; height:10px; border-radius:999px; }
+        /* feature stage: colored gradient panel behind each tab visual */
+        .feature-stage{ display:flex; align-items:center; justify-content:center;
+          border-radius:40px; overflow:hidden; padding:40px; min-height:420px;
+          background:var(--stage-grad); }
+        .feature-stage .mock-win{ width:100%; max-width:480px; box-shadow:0 24px 50px rgba(0,0,0,.22); }
+        @media (max-width:767px){ .feature-stage{ padding:22px; min-height:300px; border-radius:40px; } }
+        /* per-feature colors (non-brand) */
+        .stage-inbox{ --stage-grad:radial-gradient(120% 120% at 75% 12%,rgba(255,255,255,.20),transparent 55%),linear-gradient(135deg,#6D5BD0 0%,#9B8BF4 100%); }
+        .stage-ai{ --stage-grad:radial-gradient(120% 120% at 75% 12%,rgba(255,255,255,.20),transparent 55%),linear-gradient(135deg,#2F6BF0 0%,#67A4FF 100%); }
+        .stage-crm{ --stage-grad:radial-gradient(120% 120% at 75% 12%,rgba(255,255,255,.22),transparent 55%),linear-gradient(135deg,#EE8B27 0%,#FBB454 100%); }
+        .stage-analytics{ --stage-grad:radial-gradient(120% 120% at 75% 12%,rgba(255,255,255,.20),transparent 55%),linear-gradient(135deg,#D6418A 0%,#F47BB7 100%); }
+        /* eyebrow chip color matches its feature panel */
+        #panel-inbox .eyebrow{ color:#6D5BD0; }
+        #panel-ai .eyebrow{ color:#2F6BF0; }
+        #panel-crm .eyebrow{ color:#D9791F; }
+        #panel-analytics .eyebrow{ color:#D6418A; }
+        /* active tab tinted to its feature color */
+        #tab-inbox[aria-selected="true"]{ background:linear-gradient(135deg,#6D5BD0 0%,#9B8BF4 100%); }
+        #tab-ai[aria-selected="true"]{ background:linear-gradient(135deg,#2F6BF0 0%,#67A4FF 100%); }
+        #tab-crm[aria-selected="true"]{ background:linear-gradient(135deg,#EE8B27 0%,#FBB454 100%); }
+        #tab-analytics[aria-selected="true"]{ background:linear-gradient(135deg,#D6418A 0%,#F47BB7 100%); }
         @media (prefers-reduced-motion: reduce) {
             * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
         }
@@ -388,15 +409,16 @@
 <body class="bg-background text-on-background min-h-screen font-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
 <!-- TopNavBar -->
 <main class="pt-12 md:pt-16 relative">
-<div aria-hidden="true" class="hero-gradient absolute inset-x-0 top-0 -z-10 h-[860px]" style="background-image:linear-gradient(180deg,#faf9f5 0%,#EFFBF6 16%,#DEF5EE 38%,#CCEEE4 56%,#E4F1FB 80%,#faf9f5 100%);"></div>
-<!-- Hero Section -->
-<section id="hero" class="max-w-container-max mx-auto px-margin-desktop mb-28 relative scroll-mt-28 pt-2">
+<!-- Hero aurora band: the screen mockup sits FLUSH to this band's bottom edge -->
+<div class="hero-band relative isolate">
+<div aria-hidden="true" class="hero-aurora absolute inset-0 -z-10 bg-cover bg-bottom bg-no-repeat" style="background-image:url('assets/hero-aurora.webp');"></div>
+<section id="hero" class="max-w-container-max mx-auto px-margin-desktop relative scroll-mt-28 pt-2">
 <div class="text-center max-w-3xl mx-auto mb-16 relative z-10">
 <img src="assets/horizontal-white-logo.svg" alt="Onebear" class="h-16 md:h-20 w-auto mx-auto mb-8"/>
 <h1 class="font-display-lg text-[44px] md:text-[58px] lg:text-[66px] leading-[1.3] font-bold text-on-surface mb-6">ทุกแช็ตที่ตอบช้าคือ<br/><span class="font-gradient">ยอดขายที่หลุดมือ</span></h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-2xl mx-auto">Onebear รวมทุกแชทจาก Facebook, LINE OA และ Instagram ไว้ในจอเดียว พร้อม AI ที่ตอบลูกค้าและปิดการขายแทนคุณตลอด 24 ชม. ไม่พลาดทุกโอกาสขาย</p>
 <div class="flex flex-col items-center gap-3">
-<a href="#signup" class="glow-button inline-flex items-center justify-center gap-2 text-white font-body-md text-body-md font-semibold px-9 py-4 rounded-full hover:opacity-90 transition-opacity group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface focus-visible:ring-offset-2">เริ่มใช้งานฟรี <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span></a>
+<a href="#signup" class="glow-button inline-flex items-center justify-center gap-2 text-white font-body-md text-body-md font-semibold px-9 py-3 rounded-full hover:opacity-90 transition-opacity group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface focus-visible:ring-offset-2">เริ่มใช้งานฟรี <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span></a>
 <span class="font-body-sm text-body-sm text-on-surface-variant">ใช้ฟรีได้ตลอด ไม่มีกำหนด · ไม่ต้องใช้บัตรเครดิต</span>
 </div>
 </div>
@@ -421,7 +443,7 @@
 <span class="w-12 hidden sm:block"></span>
 </div>
 <!-- App body -->
-<div class="grid grid-cols-12 bg-[#faf9f5] text-left" style="min-height:340px">
+<div class="grid grid-cols-12 bg-[#ffffff] text-left" style="min-height:340px">
 <!-- Sidebar -->
 <aside class="hidden md:flex col-span-2 flex-col gap-1 p-3 border-r border-black/5 bg-white">
 <div class="flex items-center gap-2 px-2 py-2 rounded-lg bg-surface-container-low text-on-surface">
@@ -498,10 +520,13 @@
 </div>
 </div>
 </div>
-<div aria-hidden="true" class="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-[#faf9f5]"></div>
 </div>
 </div>
-<div class="mt-12 max-w-3xl mx-auto flex flex-wrap items-center justify-center gap-x-3 gap-y-4 text-center">
+</section>
+</div>
+<!-- Channels strip (on white, below the aurora band) -->
+<section class="max-w-container-max mx-auto px-margin-desktop mb-28 pt-12">
+<div class="max-w-3xl mx-auto flex flex-wrap items-center justify-center gap-x-3 gap-y-4 text-center">
 <span class="font-body-md text-[16px] leading-relaxed text-on-surface-variant">ระบบ All-in-One ที่รวมทุกช่องทาง ตั้งแต่แชท ไปจนถึงการวิเคราะห์ธุรกิจ พร้อมเชื่อมต่อได้กับ</span>
 <span class="inline-flex items-center gap-2.5 align-middle">
 <span role="img" aria-label="Facebook" class="w-9 h-9 rounded-full overflow-hidden inline-flex items-center justify-center shrink-0 shadow-sm"><svg viewBox="0 0 666.667 666.667" style="width:100%;height:100%;display:block" xmlns="http://www.w3.org/2000/svg"><defs><clipPath id="fbClip"><path d="M0 700h700V0H0Z"/></clipPath></defs><g clip-path="url(#fbClip)" transform="matrix(1.33333 0 0 -1.33333 -133.333 800)"><path d="M0 0c0 138.071-111.929 250-250 250S-500 138.071-500 0c0-117.245 80.715-215.622 189.606-242.638v166.242h-51.552V0h51.552v32.919c0 85.092 38.508 124.532 122.048 124.532 15.838 0 43.167-3.105 54.347-6.211V81.986c-5.901.621-16.149.932-28.882.932-40.993 0-56.832-15.528-56.832-55.9V0h81.659l-14.028-76.396h-67.631v-171.773C-95.927-233.218 0-127.818 0 0" style="fill:#0866ff" transform="translate(600 350)"/><path d="m0 0 14.029 76.396H-67.63v27.019c0 40.372 15.838 55.899 56.831 55.899 12.733 0 22.981-.31 28.882-.931v69.253c-11.18 3.106-38.509 6.212-54.347 6.212-83.539 0-122.048-39.441-122.048-124.533V76.396h-51.552V0h51.552v-166.242a250.559 250.559 0 0 1 60.394-7.362c10.254 0 20.358.632 30.288 1.831V0Z" style="fill:#fff" transform="translate(447.918 273.604)"/></g></svg></span>
@@ -567,9 +592,9 @@
   </ul>
   <a href="#signup" class="glow-button mt-1 w-fit inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-white text-sm font-semibold">ดูฟีเจอร์รวมแชท<span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span></a>
 </div>
-    <div class="mock-win" role="img" aria-label="ตัวอย่างหน้าจอ Onebear">
+    <div class="feature-stage stage-inbox"><div class="mock-win" role="img" aria-label="ตัวอย่างหน้าจอ Onebear">
   <div class="mock-bar"><span class="mock-dot" style="background:#ff5f57"></span><span class="mock-dot" style="background:#febc2e"></span><span class="mock-dot" style="background:#28c840"></span><span class="ml-2 text-[11px] text-on-surface-variant">app.onebear.ai/inbox</span></div>
-  <div class="p-4 md:p-5"><div class="flex items-center justify-between mb-3"><span class="font-semibold text-on-surface text-sm">รวมทุกแชท</span><span class="text-[11px] text-on-surface-variant bg-surface-container rounded-full px-2 py-0.5">12 ใหม่</span></div><div class="space-y-1"><div class="flex items-center gap-3 p-2 rounded-[12px] hover:bg-[#f3f4f1]"><span class="w-9 h-9 rounded-full flex items-center justify-center text-white text-[11px] font-semibold shrink-0" style="background:#1877F2">FB</span><div class="min-w-0 flex-1"><p class="text-sm text-on-surface truncate">คุณมินตรา</p><p class="text-[11px] text-on-surface-variant truncate">สนใจแพ็กเกจ Growth ค่ะ</p></div></div><div class="flex items-center gap-3 p-2 rounded-[12px] hover:bg-[#f3f4f1]"><span class="w-9 h-9 rounded-full flex items-center justify-center text-white text-[11px] font-semibold shrink-0" style="background:#06C755">LN</span><div class="min-w-0 flex-1"><p class="text-sm text-on-surface truncate">ร้านบ้านสวน</p><p class="text-[11px] text-on-surface-variant truncate">ขอใบเสนอราคาหน่อยครับ</p></div></div><div class="flex items-center gap-3 p-2 rounded-[12px] hover:bg-[#f3f4f1]"><span class="w-9 h-9 rounded-full flex items-center justify-center text-white text-[11px] font-semibold shrink-0" style="background:linear-gradient(135deg,#F58529,#DD2A7B)">IG</span><div class="min-w-0 flex-1"><p class="text-sm text-on-surface truncate">@thanaporn</p><p class="text-[11px] text-on-surface-variant truncate">มีโปรอะไรบ้างคะ</p></div></div></div></div></div>
+  <div class="p-4 md:p-5"><div class="flex items-center justify-between mb-3"><span class="font-semibold text-on-surface text-sm">รวมทุกแชท</span><span class="text-[11px] text-on-surface-variant bg-surface-container rounded-full px-2 py-0.5">12 ใหม่</span></div><div class="space-y-1"><div class="flex items-center gap-3 p-2 rounded-[12px] hover:bg-[#f3f4f1]"><span class="w-9 h-9 rounded-full flex items-center justify-center text-white text-[11px] font-semibold shrink-0" style="background:#1877F2">FB</span><div class="min-w-0 flex-1"><p class="text-sm text-on-surface truncate">คุณมินตรา</p><p class="text-[11px] text-on-surface-variant truncate">สนใจแพ็กเกจ Growth ค่ะ</p></div></div><div class="flex items-center gap-3 p-2 rounded-[12px] hover:bg-[#f3f4f1]"><span class="w-9 h-9 rounded-full flex items-center justify-center text-white text-[11px] font-semibold shrink-0" style="background:#06C755">LN</span><div class="min-w-0 flex-1"><p class="text-sm text-on-surface truncate">ร้านบ้านสวน</p><p class="text-[11px] text-on-surface-variant truncate">ขอใบเสนอราคาหน่อยครับ</p></div></div><div class="flex items-center gap-3 p-2 rounded-[12px] hover:bg-[#f3f4f1]"><span class="w-9 h-9 rounded-full flex items-center justify-center text-white text-[11px] font-semibold shrink-0" style="background:linear-gradient(135deg,#F58529,#DD2A7B)">IG</span><div class="min-w-0 flex-1"><p class="text-sm text-on-surface truncate">@thanaporn</p><p class="text-[11px] text-on-surface-variant truncate">มีโปรอะไรบ้างคะ</p></div></div></div></div></div></div>
   </div>
 </div>
 <div id="panel-ai" role="tabpanel" aria-labelledby="tab-ai" tabindex="0" class="tabpanel" hidden>
@@ -585,9 +610,9 @@
   </ul>
   <a href="#signup" class="glow-button mt-1 w-fit inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-white text-sm font-semibold">ลองให้ AI ตอบ<span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span></a>
 </div>
-    <div class="mock-win" role="img" aria-label="ตัวอย่างหน้าจอ Onebear">
+    <div class="feature-stage stage-ai"><div class="mock-win" role="img" aria-label="ตัวอย่างหน้าจอ Onebear">
   <div class="mock-bar"><span class="mock-dot" style="background:#ff5f57"></span><span class="mock-dot" style="background:#febc2e"></span><span class="mock-dot" style="background:#28c840"></span><span class="ml-2 text-[11px] text-on-surface-variant">app.onebear.ai/ai-agent</span></div>
-  <div class="p-4 md:p-5"><div class="space-y-3"><div class="flex justify-start"><div class="bg-[#f3f4f1] text-on-surface text-[13px] rounded-2xl rounded-tl-sm px-3 py-2 max-w-[78%]">ร้านเปิดถึงกี่โมงคะ?</div></div><div class="flex justify-end"><div class="text-white text-[13px] rounded-2xl rounded-tr-sm px-3 py-2 max-w-[82%]" style="background:linear-gradient(135deg,#35B0A6,#4CD6AA)">เปิด 9:00–21:00 ทุกวันค่ะ สนใจสินค้าตัวไหนแจ้งได้เลยนะคะ</div></div><div class="flex items-center gap-2 pt-1"><span class="inline-flex items-center gap-1.5 text-[11px] text-teal-deep bg-white border border-surface-border rounded-full px-2 py-1"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span>ตอบอัตโนมัติโดย AI</span><span class="inline-flex items-center gap-1 text-[11px] text-on-surface-variant border border-surface-border rounded-full px-2 py-1"><span class="material-symbols-outlined" style="font-size:13px">support_agent</span>ส่งต่อแอดมิน</span></div></div></div></div>
+  <div class="p-4 md:p-5"><div class="space-y-3"><div class="flex justify-start"><div class="bg-[#f3f4f1] text-on-surface text-[13px] rounded-2xl rounded-tl-sm px-3 py-2 max-w-[78%]">ร้านเปิดถึงกี่โมงคะ?</div></div><div class="flex justify-end"><div class="text-white text-[13px] rounded-2xl rounded-tr-sm px-3 py-2 max-w-[82%]" style="background:linear-gradient(135deg,#35B0A6,#4CD6AA)">เปิด 9:00–21:00 ทุกวันค่ะ สนใจสินค้าตัวไหนแจ้งได้เลยนะคะ</div></div><div class="flex items-center gap-2 pt-1"><span class="inline-flex items-center gap-1.5 text-[11px] text-teal-deep bg-white border border-surface-border rounded-full px-2 py-1"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span>ตอบอัตโนมัติโดย AI</span><span class="inline-flex items-center gap-1 text-[11px] text-on-surface-variant border border-surface-border rounded-full px-2 py-1"><span class="material-symbols-outlined" style="font-size:13px">support_agent</span>ส่งต่อแอดมิน</span></div></div></div></div></div>
   </div>
 </div>
 <div id="panel-crm" role="tabpanel" aria-labelledby="tab-crm" tabindex="0" class="tabpanel" hidden>
@@ -603,9 +628,9 @@
   </ul>
   <a href="#signup" class="glow-button mt-1 w-fit inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-white text-sm font-semibold">ดูระบบ CRM<span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span></a>
 </div>
-    <div class="mock-win" role="img" aria-label="ตัวอย่างหน้าจอ Onebear">
+    <div class="feature-stage stage-crm"><div class="mock-win" role="img" aria-label="ตัวอย่างหน้าจอ Onebear">
   <div class="mock-bar"><span class="mock-dot" style="background:#ff5f57"></span><span class="mock-dot" style="background:#febc2e"></span><span class="mock-dot" style="background:#28c840"></span><span class="ml-2 text-[11px] text-on-surface-variant">app.onebear.ai/crm</span></div>
-  <div class="p-4 md:p-5"><div class="flex items-center gap-3 mb-3"><span class="w-10 h-10 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center"><span class="material-symbols-outlined" style="font-size:20px">person</span></span><div class="flex-1 min-w-0"><p class="text-sm font-semibold text-on-surface">คุณมินตรา</p><p class="text-[11px] text-on-surface-variant">ลูกค้าประจำ · ซื้อ 8 ครั้ง</p></div><div class="text-right"><p class="text-[11px] text-on-surface-variant">ยอดซื้อรวม</p><p class="text-sm font-semibold text-on-surface">฿12,400</p></div></div><div class="flex items-center gap-2 p-2.5 rounded-[12px] bg-white border border-surface-border mb-2"><span class="material-symbols-outlined text-teal-deep" style="font-size:18px;font-variation-settings:'FILL' 1">verified</span><span class="text-[12px] text-on-surface flex-1">ยืนยันสลิปแล้ว · ฿1,250 · KBank</span><span class="text-[11px] text-teal-deep font-semibold">สำเร็จ</span></div><div class="flex gap-2"><span class="text-[11px] text-on-surface-variant border border-surface-border rounded-full px-2 py-0.5">VIP</span><span class="text-[11px] text-on-surface-variant border border-surface-border rounded-full px-2 py-0.5">สนใจโปร</span></div></div></div>
+  <div class="p-4 md:p-5"><div class="flex items-center gap-3 mb-3"><span class="w-10 h-10 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center"><span class="material-symbols-outlined" style="font-size:20px">person</span></span><div class="flex-1 min-w-0"><p class="text-sm font-semibold text-on-surface">คุณมินตรา</p><p class="text-[11px] text-on-surface-variant">ลูกค้าประจำ · ซื้อ 8 ครั้ง</p></div><div class="text-right"><p class="text-[11px] text-on-surface-variant">ยอดซื้อรวม</p><p class="text-sm font-semibold text-on-surface">฿12,400</p></div></div><div class="flex items-center gap-2 p-2.5 rounded-[12px] bg-white border border-surface-border mb-2"><span class="material-symbols-outlined text-teal-deep" style="font-size:18px;font-variation-settings:'FILL' 1">verified</span><span class="text-[12px] text-on-surface flex-1">ยืนยันสลิปแล้ว · ฿1,250 · KBank</span><span class="text-[11px] text-teal-deep font-semibold">สำเร็จ</span></div><div class="flex gap-2"><span class="text-[11px] text-on-surface-variant border border-surface-border rounded-full px-2 py-0.5">VIP</span><span class="text-[11px] text-on-surface-variant border border-surface-border rounded-full px-2 py-0.5">สนใจโปร</span></div></div></div></div>
   </div>
 </div>
 <div id="panel-analytics" role="tabpanel" aria-labelledby="tab-analytics" tabindex="0" class="tabpanel" hidden>
@@ -621,9 +646,9 @@
   </ul>
   <a href="#signup" class="glow-button mt-1 w-fit inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-white text-sm font-semibold">ดูแดชบอร์ด<span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span></a>
 </div>
-    <div class="mock-win" role="img" aria-label="ตัวอย่างหน้าจอ Onebear">
+    <div class="feature-stage stage-analytics"><div class="mock-win" role="img" aria-label="ตัวอย่างหน้าจอ Onebear">
   <div class="mock-bar"><span class="mock-dot" style="background:#ff5f57"></span><span class="mock-dot" style="background:#febc2e"></span><span class="mock-dot" style="background:#28c840"></span><span class="ml-2 text-[11px] text-on-surface-variant">app.onebear.ai/analytics</span></div>
-  <div class="p-4 md:p-5"><div class="flex gap-2 mb-3"><div class="flex-1 rounded-[12px] border border-surface-border p-2.5 text-center"><p class="text-[10px] text-on-surface-variant">ยอดวันนี้</p><p class="text-sm font-semibold text-on-surface">฿24.8k</p></div><div class="flex-1 rounded-[12px] border border-surface-border p-2.5 text-center"><p class="text-[10px] text-on-surface-variant">ปิดการขาย</p><p class="text-sm font-semibold text-on-surface">38</p></div><div class="flex-1 rounded-[12px] border border-surface-border p-2.5 text-center"><p class="text-[10px] text-on-surface-variant">ตอบเฉลี่ย</p><p class="text-sm font-semibold text-on-surface">8 วิ</p></div></div><div class="rounded-[12px] border border-surface-border p-3"><p class="text-[11px] text-on-surface-variant mb-2">ยอดขายรายวัน</p><svg viewBox="0 0 210 105" class="w-full h-24" role="img" aria-label="กราฟยอดขายรายวัน"><rect x="6" y="66" width="20" height="34" rx="4" fill="#A7E5D7"></rect><rect x="40" y="48" width="20" height="52" rx="4" fill="#A7E5D7"></rect><rect x="74" y="60" width="20" height="40" rx="4" fill="#A7E5D7"></rect><rect x="108" y="36" width="20" height="64" rx="4" fill="#A7E5D7"></rect><rect x="142" y="42" width="20" height="58" rx="4" fill="#A7E5D7"></rect><rect x="176" y="18" width="20" height="82" rx="4" fill="#41C3A8"></rect></svg></div></div></div>
+  <div class="p-4 md:p-5"><div class="flex gap-2 mb-3"><div class="flex-1 rounded-[12px] border border-surface-border p-2.5 text-center"><p class="text-[10px] text-on-surface-variant">ยอดวันนี้</p><p class="text-sm font-semibold text-on-surface">฿24.8k</p></div><div class="flex-1 rounded-[12px] border border-surface-border p-2.5 text-center"><p class="text-[10px] text-on-surface-variant">ปิดการขาย</p><p class="text-sm font-semibold text-on-surface">38</p></div><div class="flex-1 rounded-[12px] border border-surface-border p-2.5 text-center"><p class="text-[10px] text-on-surface-variant">ตอบเฉลี่ย</p><p class="text-sm font-semibold text-on-surface">8 วิ</p></div></div><div class="rounded-[12px] border border-surface-border p-3"><p class="text-[11px] text-on-surface-variant mb-2">ยอดขายรายวัน</p><svg viewBox="0 0 210 105" class="w-full h-24" role="img" aria-label="กราฟยอดขายรายวัน"><rect x="6" y="66" width="20" height="34" rx="4" fill="#A7E5D7"></rect><rect x="40" y="48" width="20" height="52" rx="4" fill="#A7E5D7"></rect><rect x="74" y="60" width="20" height="40" rx="4" fill="#A7E5D7"></rect><rect x="108" y="36" width="20" height="64" rx="4" fill="#A7E5D7"></rect><rect x="142" y="42" width="20" height="58" rx="4" fill="#A7E5D7"></rect><rect x="176" y="18" width="20" height="82" rx="4" fill="#41C3A8"></rect></svg></div></div></div></div>
   </div>
 </div>
 </div>
