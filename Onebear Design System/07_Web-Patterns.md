@@ -1,0 +1,345 @@
+---
+type: patterns
+tags: [patterns, web, brand/onebear, status/active]
+status: active
+created: 2026-06-03
+category: web-patterns
+brand_scope: onebear
+---
+
+# 🧩 Web Section Patterns
+
+> Section/หน้าเว็บมาตรฐานของ Onebear — โครงเนื้อหาและ pattern สรุปจาก Figma `Q2-2026-Webdesign`
+> อ้างอิง token จาก [[01_Colors]] · [[02_Typography]] · [[03_Spacing]] · [[04_Buttons]]
+
+---
+
+## 🏷️ Section Header (eyebrow + heading) — มาตรฐาน
+
+| ส่วน | สเปก |
+|---|---|
+| **Eyebrow** | Gofive Medium 500 · **12–14px** · uppercase · `letter-spacing: 0.04em` · สี `#41C3A8` (Brand Teal) · ห่างจาก heading `--space-2` (8px) |
+| **Heading (H1/H2)** | Gofive Bold 700 · `text-[32px]` → `md:text-[48px]` · tracking-tight · ink-1100 |
+| **Subheading** | Gofive Medium 500 · 16px · สี `#16161B` / `#525260` · max-width 640px center |
+
+```html
+<span class="text-[12px] font-medium text-[#41C3A8] uppercase tracking-[0.04em]">ราคา</span>
+<h2 class="text-[48px] font-bold text-[#0A0F1C] leading-[72px]">ปลดล็อกด้วยพลัง AI</h2>
+```
+
+---
+
+## 🟢 Corner Radius Tiers
+
+| ชนิด | radius | ตัวอย่าง |
+|---|---|---|
+| **Pricing card** | **22–24px** `rounded-[22px]` | ทุก pricing card ทั้ง 3 tier |
+| **FAQ card** | **20px** `rounded-[20px]` | accordion item แต่ละข้อ |
+| **Add-on card** | **24px** `rounded-[24px]` | add-on grid item |
+| **Button** | **999px** `rounded-full` | ปุ่มทุกชนิด (pill) |
+| **Billing toggle** | **999px** `rounded-full` | toggle รายเดือน/รายปี |
+| **Badge/Tag** | **6px** `rounded-[6px]` | "Add-on" badge |
+| **Best value ribbon** | top 22–24px `rounded-t-[22px]` | ribbon เหนือ pricing card |
+
+---
+
+## 🎯 Product Positioning (สำคัญ — บริบทสินค้า)
+
+> **Onebear = แพลตฟอร์มรวมแชทที่เป็นมากกว่าระบบรวมแชท**
+
+| | |
+|---|---|
+| คือ | แพลตฟอร์มรวมแชทหลายช่องทาง + AI Assistant สำหรับเจ้าของร้านออนไลน์ |
+| ช่องทาง | Facebook Messenger, LINE OA, Instagram, WhatsApp และอีกหลายช่องทาง |
+| AI features | ตอบอัตโนมัติ (ฝึกจากข้อมูลร้าน), Smart Handoff ส่งต่อแอดมิน |
+| Core jobs | รวม inbox ทุกช่องทาง, AI ตอบแชท, CRM, Slip Verification, Analytics |
+| Pricing hook | **Free plan ทดลองได้ฟรี · Growth plan ทดลองฟรี 14 วัน** |
+| เหตุผล | ~95% ร้านค้าออนไลน์ไทยมีหลายช่องทาง → รวมในที่เดียวช่วยไม่พลาดลูกค้า |
+| น้ำเสียง | "เพื่อนร่วมทีมที่อยู่ข้างคุณทุกช่วงของวัน" — ตั้งแต่เปิดร้าน ระหว่างวัน จนถึงเหนื่อย |
+
+> 🐻 **3 moment ของคนขายออนไลน์ที่ Onebear ออกแบบเพื่อ:**
+> 1. **เปิดร้าน** — พร้อมรับลูกค้าทุกช่องทางตั้งแต่แรก
+> 2. **ระหว่างวัน** — AI ช่วยตอบ ลดงานซ้ำซ้อน โฟกัสกับงานที่สำคัญกว่า
+> 3. **ช่วงเหนื่อยล้า** — AI ดูแลแทนได้แม้ offline / นอกเวลา
+
+---
+
+## 🦸 Pattern: Hero Section
+
+**โครงสร้าง (จาก Figma node 4116-4793)**
+
+1. Navbar sticky (white bg, logo left, links center, buttons right)
+2. Eyebrow `AI Sales Agent` / `แพลตฟอร์มรวมแชท` (teal, 14px, uppercase)
+3. H1 ใหญ่ (48px Bold) — 2 บรรทัด, line 2 เน้นสี teal หรือ brand keyword
+4. Sub text (16px Medium) — max-width 500px center
+5. ปุ่ม CTA dark `btn-dark-hero` — "เริ่มใช้งานฟรี"
+6. Product mockup ใหญ่ — chat app screenshot / UI mock ลอยบน aurora background
+
+**CTA under-note:** "ฟรีสำหรับ Free plan · ทดลอง Growth 14 วัน · ไม่ต้องผูกบัตรเครดิต"
+
+**Aurora background:**
+```css
+.hero-aurora {
+  /* Teal-led blobs แทน Iris ม่วงของ makub */
+  background: radial-gradient(circle at 30% 40%, rgba(65,195,168,0.15) 0%, transparent 50%),
+              radial-gradient(circle at 70% 60%, rgba(6,182,212,0.12) 0%, transparent 45%),
+              radial-gradient(circle at 50% 80%, rgba(139,92,246,0.08) 0%, transparent 40%),
+              white;
+}
+```
+
+---
+
+## 💳 Pattern: Pricing Section (3 tier + add-ons)
+
+โครงจาก Figma `3842-132812`
+
+### Section header
+- Eyebrow: `แผนราคาที่ยืดหยุ่นสำหรับทุกขนาดธุรกิจ` (teal, uppercase)
+- H2 `48px Bold`: "ปลดล็อกด้วยพลัง AI" + "แบบไร้ขีดจำกัด" (line 2 สี teal)
+- Sub: "เสริมศักยภาพทีมขายและการตลาด..."
+
+### Billing Toggle
+```html
+<!-- รายเดือน/รายปี toggle -->
+<div class="flex items-center gap-[8px] py-[8px]">
+  <span class="text-[14px]">รายเดือน</span>
+  <div class="bg-[#00C48C] h-[24px] rounded-full w-[44px] relative">
+    <div class="absolute bg-white rounded-[9px] size-[18px] top-[3px]"
+         id="toggle-knob" />
+  </div>
+  <span class="text-[14px]">รายปี</span>
+  <div class="bg-[#E8FAF6] px-[8px] py-[2px] rounded-full">
+    <span class="text-[11px] text-[#00C48C]">ประหยัด 20%</span>
+  </div>
+</div>
+```
+
+### 3 Pricing Cards
+
+| Tier | ราคา | ปุ่ม | เด่น |
+|---|---|---|---|
+| **Free Plan** | ฟรี | `btn-outline` (teal outline) "เริ่มใช้งานฟรี" | ปกติ |
+| **Starter Plan** | ฿790/เดือน | `btn-outline` (teal outline) "เริ่มใช้งานฟรี" | ปกติ |
+| **Growth Plan** | ฿1,990/เดือน | `btn-gradient` (teal→cyan) "ทดลองใช้งานฟรี 14 วัน" | **Best value** ribbon ⭐ |
+
+**"Best value" ribbon** (เหนือ Growth card):
+```css
+.pricing-ribbon {
+  background: linear-gradient(166deg, #00C48C 0%, #06B6D4 100%);
+  border-radius: 22px 22px 0 0;
+  padding: 8px 0 28px;     /* pb-7 ซ่อนก้นใต้การ์ด */
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+}
+```
+
+**กฎ Pricing card:**
+- ทุกการ์ด: `rounded-[22px]`, `shadow-[0_12px_40px_rgba(0,0,0,0.08)]`, `border border-[#F6F6F8]`
+- Growth card ยกขึ้น: `relative` ครอบ ribbon + card, card เป็น `z-10`
+- Feature list: ✅ = teal check (10% bg), ❌ = dash grey (4% bg)
+
+### Feature Lists
+
+**Free Plan:**
+- ✅ 1 ช่องทางแชท (LINE OA)
+- ✅ AI ตอบอัตโนมัติ 50 ข้อ/เดือน
+- ✅ ลูกค้าสูงสุด 50 คน
+- ✅ รายงานพื้นฐาน
+- ❌ CRM พื้นฐาน
+- ❌ Slip Verification
+- ❌ Analytics Dashboard
+- ❌ API Access
+- ❌ ทีม Support ส่วนตัว
+
+**Starter Plan (฿790):**
+- ✅ 3 ช่องทางแชท
+- ✅ AI ตอบอัตโนมัติไม่จำกัด
+- ✅ ลูกค้าสูงสุด 500 คน
+- ✅ รายงานรายเดือน
+- ✅ CRM พื้นฐาน
+- ✅ Slip Verification
+- ❌ Analytics Dashboard
+- ❌ API Access
+- ❌ ทีม Support ส่วนตัว
+
+**Growth Plan (฿1,990) ⭐:**
+- ✅ 3 ช่องทางแชท
+- ✅ AI ตอบอัตโนมัติไม่จำกัด
+- ✅ ลูกค้าสูงสุด 500 คน
+- ✅ รายงานรายเดือน
+- ✅ CRM เต็มรูปแบบ
+- ✅ Slip Verification
+- ✅ Analytics Dashboard
+- ✅ API Access
+- ❌ ทีม Support ส่วนตัว
+
+---
+
+## 🧩 Pattern: Add-On Section
+
+หัวข้อ: "ยกระดับการใช้งานด้วย Add-On"
+
+**3 Add-ons ปัจจุบัน:**
+
+| Add-on | ราคา | คำอธิบาย |
+|---|---|---|
+| **Meta Add-on** | ฿15/คน/เดือน | ติดตามการทำงานของทีมผ่านบันทึกงานประจำวัน แยกตามโปรเจกต์และรายบุคคล |
+| **Line Add-on** | ฿20/คน/เดือน | เบิกค่าใช้จ่ายและสวัสดิการ ส่งเรื่องและอนุมัติผ่านระบบได้อย่างรวดเร็ว |
+| **User Add-on** | ฿20/คน/เดือน | Smart recruiting platform ครบวงจร สมัครงาน สร้างหน้า Career และตำแหน่งงาน |
+
+**Add-on card:**
+```css
+.addon-card {
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  padding: 20px;
+  min-height: 180px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+/* ภาพ placeholder 120x120 = bg-[#ECECF1] rounded-[16px] */
+/* Price = Seafoam #13CAAF, 20px semi-bold */
+/* Unit = #838395, 14px */
+```
+
+**Layout:** 2-column grid `grid-cols-2 gap-[20px]` · max-width 980px
+
+---
+
+## 🎯 Pattern: CTA Banner Section
+
+**โครงสร้าง:**
+```html
+<!-- Gradient background: 90deg → 168deg teal→cyan→purple -->
+<section style="background: linear-gradient(168deg, #00C48C, #06B6D4, #8B5CF6)">
+  <!-- Mascot animation (GIF) ลอยเหนือ banner -->
+  <img src="mascot-animation.gif" class="absolute -top-[161px] size-[200px]" />
+
+  <!-- Heading (white, center) -->
+  <h2 class="text-white text-[32px] font-semibold text-center">
+    เร่งการเติบโตของธุรกิจคุณ<br>อย่างทรงพลังด้วย Onebear
+  </h2>
+
+  <!-- Sub text (white 16px) -->
+  <p class="text-white text-[16px] font-medium text-center max-w-[542px]">
+    เริ่มต้นใช้งานฟรีวันนี้ เพื่อยกระดับการดูแลลูกค้า...
+  </p>
+
+  <!-- CTA button dark (บนพื้น gradient สว่าง → ใช้ dark button กัน contrast) -->
+  <button class="btn btn-dark-hero w-[240px]">เริ่มใช้งานฟรี</button>
+
+  <!-- Under-note -->
+  <p class="text-white text-[14px] text-center">ไม่ต้องใช้บัตรเครดิต · ฟรี 14 วัน · ยกเลิกได้ทุกเมื่อ</p>
+</section>
+```
+
+> ⚠️ **Dark button บน gradient** — ใช้ `btn-dark` (dark bg) แทน gradient button เพื่อกัน contrast ไม่ชนกัน
+
+---
+
+## ❓ Pattern: FAQ Section
+
+**โครงสร้าง:**
+- Background: `bg-[#F1F5F9]` (Section BG) — สว่างกว่าขาว ให้ feel ต่างจาก section อื่น
+- Header: FAQ eyebrow (teal uppercase) + "คำถามที่พบบ่อย" (32px Bold)
+- 6 accordion items, max-width 840px center
+
+**FAQ Card:**
+```css
+.faq-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(97,97,97,0.10);
+  padding: 20px;
+  gap: 20px;  /* ระหว่างคำถามกับคำตอบ */
+}
+```
+
+**คำถาม FAQ ปัจจุบัน:**
+1. Onebear แตกต่างจากเจ้าอื่นอย่างไร?
+2. ใช้เวลานานแค่ไหนในการเริ่มต้น?
+3. รองรับช่องทางไหนบ้าง?
+4. ระหว่างทดลองมีค่าใช้จ่ายเพิ่มเติมไหม?
+5. ข้อมูลลูกค้าปลอดภัยไหม?
+6. AI จะตอบลูกค้าแปลก ๆ ทำร้านเสียภาพไหม?
+
+> ✅ ใช้ `<details>/<summary>` native สำหรับ accessible accordion โดยไม่ต้องใช้ JavaScript
+
+---
+
+## 🌐 Pattern: Navbar
+
+**โครงสร้าง:**
+```html
+<nav class="bg-white shadow-[0_8px_10px_rgba(0,0,0,0.04)] sticky top-0 px-[40px] py-[10px]">
+  <!-- Logo (left) -->
+  <img src="onebear-logo-horizontal.svg" class="h-[40px]" />
+
+  <!-- Nav links (center) -->
+  <!-- หน้าแรก | ฟีเจอร์ | ราคา | บทความ | ร่วมเป็นพาร์ตเนอร์ -->
+  <!-- active link สี #46BAA9 (muted teal) -->
+
+  <!-- Actions (right) -->
+  <button class="btn btn-iris btn-sm">เข้าสู่ระบบ</button>  <!-- outline border-[#DFDFE8] -->
+  <button class="btn btn-dark btn-sm">เริ่มใช้งานฟรี</button>  <!-- dark bg -->
+</nav>
+```
+
+**Nav link สี:**
+- Default: `#16161B`
+- Active (current page): `#46BAA9` (muted teal)
+- Font: 14px Medium
+
+---
+
+## 🌑 Pattern: Footer (Dark)
+
+**Background:** `#0C0B15` (Deep dark)
+
+**โครงสร้าง:**
+```
+Logo Onebear (dark variant) + "Created by Gofive"
+Social media icons (Facebook, Instagram)
+
+หมวดหมู่: หน้าแรก | ฟีเจอร์ | ราคา | บทความ | ร่วมเป็นพาร์ตเนอร์
+แพลตฟอร์มในเครือ: empeo | Venio | eTaxGo | IOMO | SignToGo (brand icons 40px)
+
+--- divider ---
+Gofive logo + copyright
+นโยบายความเป็นส่วนตัว | เงื่อนไขการให้บริการ | มาตรฐานการให้บริการ | นโยบายการพัฒนาซอฟต์แวร์
+© 2026 Gofive Co.,Ltd. All rights reserved.
+```
+
+**Typography footer:** Gofive Medium 16px · opacity 50% สำหรับ links
+
+---
+
+## ✅ Hero / Section Summary
+
+| Section | Background | CTA | Note |
+|---|---|---|---|
+| **Hero** | White + aurora teal blobs | Dark button `#1C1C22` | Product mock ลอยบน aurora |
+| **Pricing** | White | Outline (Free/Starter) / Gradient (Growth) | ribbon teal→cyan |
+| **Add-ons** | White | ไม่มีปุ่มหลัก | grid 2-col |
+| **CTA Banner** | Gradient teal→cyan→purple | Dark button | Mascot GIF ลอยเหนือ |
+| **FAQ** | `#F1F5F9` | ไม่มีปุ่ม | accordion native |
+| **Footer** | `#0C0B15` | ไม่มี | dark text white 50% |
+
+---
+
+## 🔗 Related
+
+- [[04_Buttons]] — ปุ่มแต่ละ variant
+- [[05_Brand-Assets]] — logo / mascot ใน section
+- [[06_Icons]] — check/close icons
+- [[00_README]] — ภาพรวม
+
+---
+
+> 🧩 **Pricing = 3 tier + ribbon gradient** · **CTA = dark on gradient** · **FAQ = F1F5F9 bg** · **Footer = 0C0B15**

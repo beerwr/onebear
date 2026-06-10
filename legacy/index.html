@@ -1,9 +1,19 @@
+<!--
+  ============================================================
+  ⚠️  LEGACY FILE — Onebear Landing v1 (ARCHIVED / เลิกใช้แล้ว)
+  ============================================================
+  สถานะ  : เก็บไว้เป็นประวัติเท่านั้น อย่านำไปใช้/แก้ต่อ
+  ใช้จริง : ../index.html  (เดิมคือ v3 = เวอร์ชันปัจจุบัน)
+  อ้างอิง : ../Onebear Design System/
+  ============================================================
+-->
 <!DOCTYPE html>
-<html class="light" lang="th">
+<html class="light" lang="th" data-legacy="v1">
 <head>
+<title>[LEGACY v1] Onebear — ARCHIVED</title>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Onebear v2 (mint brand) | รวมทุกแชท ปิดการขายด้วย AI</title>
+<title>Onebear | รวมทุกแชท ปิดการขายด้วย AI</title>
 
 <!-- Material Symbols (icons) -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -39,15 +49,14 @@
           "surface-white": "#FFFFFF",
           "surface-container-low": "#f5f4f0",
           "surface-container-lowest": "#ffffff",
-          "primary": "#2DA892",
-          "primary-container": "#313937",
-          "text-primary": "#313937",
+          "primary": "#00180d",
+          "primary-container": "#052f1e",
+          "text-primary": "#052F1E",
           "text-secondary": "#4A5D54",
           "on-primary": "#ffffff",
-          "accent-vibrant": "#41C3A8",
-          "secondary": "#15A591",
-          "secondary-container": "#7DDECE",
-          "teal-mist": "#E8FAF6",
+          "accent-vibrant": "#C8FF40",
+          "secondary": "#4c6700",
+          "secondary-container": "#bef535",
           "border-subtle": "#E5E4DE",
           "error": "#ba1a1a"
         },
@@ -87,29 +96,22 @@
   .elevation-1{ box-shadow:0px 2px 4px rgba(5,47,30,.05); }
   .elevation-2{ box-shadow:0px 12px 24px rgba(5,47,30,.1); }
 
-  /* ===== VISUAL CONTAINER — teal-mist "matte" frame for green/lime mockups =====
-     Soft mint gradient mat (E8FAF6 → F2FCFA) ties saturated imagery to the Onebear
-     brand and warms the cream page; padding creates the gallery mat, and the inner
-     img gets its own rounded inset + hairline so it reads as a mounted print. */
-  .visual-frame{ background:linear-gradient(150deg,#E8FAF6 0%,#F2FCFA 100%); padding:16px; }
-  .visual-frame > img{ border-radius:20px; box-shadow:inset 0 0 0 1px rgba(65,195,168,.18); }
-  @media (min-width:768px){ .visual-frame{ padding:20px; } }
-
   /* ===== BUTTONS — Onebear DS pill shape, Stitch forest-green palette =====
      DS rules: pill (rounded-full), 14px semibold, sentence case (no uppercase). */
   .btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px;
         font-weight:600; font-size:14px; line-height:20px;
         padding:12px 28px; border-radius:999px;
         transition:opacity .2s, background-color .2s, border-color .2s; cursor:pointer; white-space:nowrap; }
-  .btn-primary{ background:linear-gradient(135deg,#35B0A6 0%,#4CD6AA 100%); color:#fff; } .btn-primary:hover{ opacity:.92; }
-  .btn-secondary{ background:#fff; color:#15A591; border:1px solid rgba(65,195,168,0.45); }
-  .btn-secondary:hover{ background:#E8FAF6; border-color:#41C3A8; }
+  .btn-primary{ background:#052f1e; color:#fff; } .btn-primary:hover{ opacity:.9; }
+  .btn-secondary{ background:#fff; color:#052F1E; border:1px solid #E5E4DE; }
+  .btn-secondary:hover{ background:#f5f4f0; border-color:#052F1E; }
   .btn-sm{ padding:8px 22px; }
   .btn-block{ width:100%; padding:16px 28px; }
 </style>
 </head>
 
 <body class="bg-background text-text-primary font-body-main text-body-main antialiased selection:bg-accent-vibrant selection:text-primary-container">
+<div style="position:fixed;top:0;left:0;right:0;z-index:99999;background:#b91c1c;color:#fff;font:600 14px/1.4 system-ui,sans-serif;padding:8px 16px;text-align:center">⚠️ LEGACY v1 — ไฟล์เก็บประวัติ ห้ามใช้งานจริง · เวอร์ชันปัจจุบันอยู่ที่ <a href="../index.html" style="color:#fff;text-decoration:underline">../index.html</a></div>
 
 <!-- ===================== NAV ===================== -->
 <nav class="bg-background/80 backdrop-blur-md fixed top-0 w-full z-50 border-b border-border-subtle">
@@ -147,7 +149,7 @@
           <a class="btn btn-secondary elevation-1" href="#">นัดดูเดโม</a>
         </div>
       </div>
-      <div class="visual-frame relative w-full aspect-square md:aspect-[4/3] rounded-xl border border-border-subtle elevation-2 overflow-hidden flex items-center justify-center group">
+      <div class="relative w-full aspect-square md:aspect-[4/3] bg-surface-white rounded-xl border border-border-subtle elevation-2 overflow-hidden flex items-center justify-center group">
         <img alt="ตัวอย่างแดชบอร์ด Onebear" class="object-cover w-full h-full"
              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdYQWsupn2g0CYcpTFGmTARrZps2MHiSxPDdc9oL2f_bFquOLj_Vn309qreclamEO0VnZ_h8k-TEYATs-_VPZJtA3GpYg4hoLhjHJdgTXGM_-iXeg47oNfK1cimBTCRPDds--qSoID_XGWBuLc3N9qLud59unt9Jcw00Ay-7UeYXhl17GQ0WXRAymbJ0SiK_LJCMzM_pA9zO6ejWwgB5fLyFMDb59lvM5y_cw83vT7Idtdd5K4_KRtLPNovYrqAOqQmuTuE2TBAMCC"/>
         <div class="absolute bottom-space-lg left-space-lg bg-surface-white border border-border-subtle rounded-lg p-space-sm elevation-2 flex items-center gap-space-sm transform transition-transform group-hover:translate-y-[-4px]">
@@ -204,14 +206,14 @@
           </li>
         </ul>
       </div>
-      <div class="visual-frame w-full aspect-square rounded-xl border border-border-subtle overflow-hidden elevation-1 order-1 md:order-2">
+      <div class="w-full aspect-square bg-surface-container-low rounded-xl border border-border-subtle overflow-hidden elevation-1 order-1 md:order-2">
         <img alt="หน้าจอแชทอัตโนมัติ" class="w-full h-full object-cover"
              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTTnWI-y6SHVlxvwFZ0mkX57_kX8-qEwLBbJxGlruKNJE0GSpQvmXCFKqUm9TMQem0ipeUcR-LEWTmqYE3L5TfFIrj_MIEH46OxHOyk6thDgRQQFNGXzfyQvAsuvQnkW8-m3VakW2R-tinBRwlHKI0XCwOtA8vBZIUPAYiouN3pyBJTNES9uGwBmDG7pDQsBY34h9tSx4WJyUtDiHCYqRZ0Bkw5v8CVa-elgB-7VQx-ps_z-epQci0tWuinEFmxt2H5t8pHbF3N903"/>
       </div>
     </div>
     <!-- Feature 2 -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-space-xl md:gap-[80px] items-center">
-      <div class="visual-frame w-full aspect-square rounded-xl border border-border-subtle overflow-hidden elevation-1">
+      <div class="w-full aspect-square bg-surface-container-low rounded-xl border border-border-subtle overflow-hidden elevation-1">
         <img alt="แดชบอร์ดวิเคราะห์ข้อมูล" class="w-full h-full object-cover"
              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRjmW03oyBvCw2sCllZn7lDzcNksZ_f1-rilXrwUqdUCQ7-PEFgojFtSzruJqOiChsdA0-Y-gZ7bL-Xxv9rIMTrlq8EFG-yrm3XTbBkVE1hox22gERd-rqj3EurA6LzeBe13meXMcHX2OcMi5BmGRZQFSHOPOYGR3otm2uMrQqfdXNmm5WrphJ5NMZX5kT-DE5HFkc5HvWalv5IGXzwUAldSI1mrLUqfyktBa6ghApaU0YlRxNX8Nl2hXUBrSimn2I172rt_2Iw_Z6"/>
       </div>

@@ -1,6 +1,6 @@
 const http=require('http'),fs=require('fs'),path=require('path');
 const root=__dirname;
-const types={'.html':'text/html','.svg':'image/svg+xml','.ttf':'font/ttf','.css':'text/css','.js':'text/javascript','.png':'image/png'};
+const types={'.html':'text/html','.svg':'image/svg+xml','.ttf':'font/ttf','.woff2':'font/woff2','.css':'text/css','.js':'text/javascript','.png':'image/png'};
 http.createServer((req,res)=>{
   let p=decodeURIComponent(req.url.split('?')[0]); if(p==='/')p='/index.html';
   const fp=path.join(root,p);
