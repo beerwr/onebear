@@ -115,6 +115,26 @@ brand_scope: onebear
 </div>
 ```
 
+### Mobile Floating Toggle (sticky chip)
+
+บน mobile toggle จะ sticky ลอยเป็น chip เพื่อให้ user เปลี่ยน billing period ได้ตลอดขณะ scroll pricing cards
+
+```html
+<div id="bill-chip"
+     class="sticky top-4 z-30 lg:static
+            w-fit mx-auto flex items-center gap-3 mb-8 lg:mb-10
+            px-4 py-2.5 lg:px-0 lg:py-0
+            rounded-full lg:rounded-none
+            bg-white/95 lg:bg-transparent
+            shadow-[0_4px_18px_rgba(0,0,0,0.10)] lg:shadow-none">
+  [toggle HTML เดิม]
+</div>
+```
+
+- `sticky top-4 z-30` บน mobile / `lg:static` บน desktop
+- `bg-white/95` + `shadow` ให้ดูเป็น floating chip ที่ชัดเจน
+- backdrop blur ไม่จำเป็น — white/95 พอ
+
 ### 3 Pricing Cards
 
 | Tier | ราคา | ปุ่ม | เด่น |
@@ -333,6 +353,62 @@ Gofive logo + copyright
 
 ---
 
+## 📱 Pattern: Features Section — Mobile Snap Carousel
+
+Desktop ใช้ tab layout — ซ่อนบน mobile ด้วย `hidden md:block`
+Mobile ใช้ horizontal snap scroll cards แยก DOM block ด้วย `md:hidden`
+
+### Card structure
+```html
+<!-- Track -->
+<div id="feat-mob-track"
+     class="flex gap-3 overflow-x-auto snap-x snap-mandatory no-scrollbar px-5 py-4 -mx-5">
+  <!-- Card -->
+  <div class="feat-mob-card snap-center shrink-0 w-[85vw] rounded-[24px] overflow-visible
+              bg-white shadow-[0_8px_28px_rgba(0,0,0,0.10)]">
+    <!-- Visual header: fixed height, no border-radius, overflow hidden -->
+    <div class="stage-inbox flex items-center justify-center overflow-hidden"
+         style="height:200px;border-radius:0;padding:20px">
+      [mockup]
+    </div>
+    <!-- Text body -->
+    <div class="p-5">
+      <span class="eyebrow">...</span>
+      <h3 class="mt-1 mb-1">...</h3>
+      <ul class="flex flex-col gap-1.5 mb-3">...</ul>
+    </div>
+  </div>
+  <!-- Trailing spacer — ให้ card สุดท้าย snap ได้ -->
+  <div class="shrink-0 w-5" aria-hidden="true"></div>
+</div>
+<!-- Dot indicators -->
+<div class="md:hidden flex justify-center gap-2 mt-1">
+  <button class="feat-mob-dot w-2 h-2 rounded-full transition-all"></button>
+  ...
+</div>
+```
+
+### Visual header ต้องสูงเท่ากัน
+ใช้ `style="height:200px"` (fixed height) ไม่ใช่ `min-height` — เพื่อให้ทุก card มี visual area เท่ากันแม้เนื้อหาใน header จะต่างกัน
+
+### Shadow clipping — py-4 บน track
+`overflow-x: auto` implicitly ตั้ง `overflow-y: auto` ด้วย → shadow ของ card โดนตัด
+แก้ด้วย `py-4` บน track + `overflow-visible` บน card → shadow แสดงผลเหนือ/ใต้ได้
+
+### Drag momentum (Apple-style)
+JS ใน `index.html` ก่อนปิด `</body>`:
+- velocity tracking via `positions[]` (80ms window)
+- `requestAnimationFrame` friction loop: `velocity *= 0.92`
+- direction lock: ตรวจ `|dx| vs |dy|` ใน 8px แรก — ถ้า vertical → ปล่อย page scroll
+- snap positions: ใช้ `card.offsetLeft - track.offsetLeft - px` (ไม่ใช่ arithmetic) เพื่อ precision
+- `scroll-snap-type: none` ระหว่าง drag, restore หลัง `snapToNearest()`
+
+### เมื่อเพิ่ม card ใหม่
+1. เพิ่ม `<div class="feat-mob-card snap-center ...">` ก่อน trailing spacer
+2. เพิ่ม `<button class="feat-mob-dot ...">` ในส่วน dots
+
+---
+
 ## 📐 Layout Rules (กฎ)
 
 กฎที่ผูกกับการทำเว็บ ใช้อ้างอิงได้ทั้งคนและ AI (ดู `CLAUDE.md` ที่ root repo ด้วย)
@@ -344,6 +420,21 @@ Gofive logo + copyright
 - **ทำไม:** screen ตัดที่มีช่องว่างใต้มันอ่านว่า "ผิดพลาด/ลอย" — การให้ก้นชิดขอบทำให้ดูเป็น crop ที่ตั้งใจ สะอาด
 - **วิธีทำ:** ครอบ hero content + screen ไว้ใน band `relative` แล้ววาง background (เช่น aurora image) เป็น `absolute inset-0` เพื่อให้ความสูง band ปรับตามเนื้อหาและจบพอดีก้น screen (responsive-safe, gap = 0). ให้ screen เป็น element สุดท้ายใน band ไม่มี margin/padding ล่าง และเอา fade-to-white ที่ขอบตัดออก. ตรวจ `band.bottom − screen.bottom === 0` ทุก breakpoint
 - **ใช้จริงที่:** `index.html` → `.hero-band` + `.hero-aurora`
+
+### R2 · overflow-x:auto ตัด shadow
+
+เมื่อ container มี `overflow-x: auto` (หรือ `scroll`) — CSS spec กำหนดให้ `overflow-y` เป็น `auto` ด้วยโดยอัตโนมัติ → **shadow ของ child elements ถูกตัด** ทั้ง top/bottom
+
+**แก้:** เพิ่ม `py-4` (หรือ padding ที่เพียงพอ) บน scroll container + ตั้ง `overflow-visible` บน child card
+```html
+<!-- Track -->
+<div class="overflow-x-auto py-4">
+  <!-- Card: shadow ไม่โดนตัดแล้ว -->
+  <div class="shadow-[...] overflow-visible">...</div>
+</div>
+```
+
+ใช้จริงที่: Feature mobile carousel (`#feat-mob-track`)
 
 ---
 
