@@ -380,6 +380,8 @@
           background:var(--stage-grad); }
         .feature-stage .mock-win{ width:100%; max-width:480px; box-shadow:0 24px 50px rgba(0,0,0,.22); }
         @media (max-width:767px){ .feature-stage{ padding:22px; min-height:300px; border-radius:40px; } }
+        /* carousel trailing spacer — ensures card 3 can always snap to its left-aligned position */
+        .feat-mob-end{ flex-shrink:0; width:calc(100vw - max(82vw, 20rem) - 20px); }
         /* per-feature colors (non-brand) */
         .stage-inbox{ --stage-grad:radial-gradient(120% 120% at 75% 12%,rgba(255,255,255,.20),transparent 55%),linear-gradient(135deg,#6D5BD0 0%,#9B8BF4 100%); }
         .stage-crm{ --stage-grad:radial-gradient(120% 120% at 75% 12%,rgba(255,255,255,.22),transparent 55%),linear-gradient(135deg,#EE8B27 0%,#FBB454 100%); }
@@ -569,10 +571,10 @@
 <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">เลือกดูฟีเจอร์ที่ช่วยให้คุณตอบไว ปิดการขายได้มากขึ้น และดูแลลูกค้าได้ครบทุกช่องทาง</p>
 </div>
 <!-- Mobile feature carousel — md:hidden -->
-<div class="md:hidden -mx-5 sm:-mx-10">
-<div id="feat-mob-track" class="flex gap-3 overflow-x-auto snap-x snap-mandatory no-scrollbar px-5 sm:px-10 py-4" style="scroll-padding-left:20px">
+<div class="md:hidden -mx-5">
+<div id="feat-mob-track" class="flex gap-3 overflow-x-auto snap-x snap-mandatory no-scrollbar px-5 py-4" style="scroll-padding-left:20px">
 <!-- Card 1: Unified Inbox -->
-<div class="feat-mob-card snap-start shrink-0 w-[82vw] max-w-xs rounded-[24px] overflow-hidden bg-white border border-surface-border shadow-[0_6px_20px_rgba(0,0,0,0.08)]">
+<div class="feat-mob-card snap-start shrink-0 w-[82vw] min-w-[320px] rounded-[24px] overflow-hidden bg-white border border-surface-border shadow-[0_6px_20px_rgba(0,0,0,0.08)]">
 <div class="feature-stage stage-inbox flex items-center justify-center" style="height:200px;border-radius:0;padding:20px">
 <div class="mock-win w-full max-w-[200px]">
 <div class="mock-bar"><span class="mock-dot" style="background:#ff5f57"></span><span class="mock-dot" style="background:#febc2e"></span><span class="mock-dot" style="background:#28c840"></span></div>
@@ -593,7 +595,7 @@
 <a href="https://app.onebear.ai/register" class="glow-button inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-white text-[13px] font-semibold">ดูฟีเจอร์รวมแชท<span class="material-symbols-outlined" style="font-size:16px">arrow_forward</span></a>
 </div></div>
 <!-- Card 2: CRM -->
-<div class="feat-mob-card snap-start shrink-0 w-[82vw] max-w-xs rounded-[24px] overflow-hidden bg-white border border-surface-border shadow-[0_6px_20px_rgba(0,0,0,0.08)]">
+<div class="feat-mob-card snap-start shrink-0 w-[82vw] min-w-[320px] rounded-[24px] overflow-hidden bg-white border border-surface-border shadow-[0_6px_20px_rgba(0,0,0,0.08)]">
 <div class="feature-stage stage-crm flex items-center justify-center" style="height:200px;border-radius:0;padding:20px">
 <div class="mock-win w-full max-w-[200px]">
 <div class="mock-bar"><span class="mock-dot" style="background:#ff5f57"></span><span class="mock-dot" style="background:#febc2e"></span><span class="mock-dot" style="background:#28c840"></span></div>
@@ -613,7 +615,7 @@
 <a href="https://app.onebear.ai/register" class="glow-button inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-white text-[13px] font-semibold">ดูระบบ CRM<span class="material-symbols-outlined" style="font-size:16px">arrow_forward</span></a>
 </div></div>
 <!-- Card 3: Analytics -->
-<div class="feat-mob-card snap-start shrink-0 w-[82vw] max-w-xs rounded-[24px] overflow-hidden bg-white border border-surface-border shadow-[0_6px_20px_rgba(0,0,0,0.08)]">
+<div class="feat-mob-card snap-start shrink-0 w-[82vw] min-w-[320px] rounded-[24px] overflow-hidden bg-white border border-surface-border shadow-[0_6px_20px_rgba(0,0,0,0.08)]">
 <div class="feature-stage stage-analytics flex items-center justify-center" style="height:200px;border-radius:0;padding:20px">
 <div class="mock-win w-full max-w-[200px]">
 <div class="mock-bar"><span class="mock-dot" style="background:#ff5f57"></span><span class="mock-dot" style="background:#febc2e"></span><span class="mock-dot" style="background:#28c840"></span></div>
@@ -632,7 +634,7 @@
 </ul>
 <a href="https://app.onebear.ai/register" class="glow-button inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-white text-[13px] font-semibold">ดูแดชบอร์ด<span class="material-symbols-outlined" style="font-size:16px">arrow_forward</span></a>
 </div></div>
-<div class="shrink-0 w-5" aria-hidden="true"></div>
+<div class="feat-mob-end" aria-hidden="true"></div>
 </div>
 <div class="flex justify-center gap-2 mt-4 mb-1">
 <button class="feat-mob-dot w-2.5 h-2.5 rounded-full transition-colors" aria-label="ฟีเจอร์ 1"></button>
@@ -704,7 +706,7 @@
 </section>
 <!-- AI (auto-rotate, dark) -->
 <section id="ai" data-reveal class="mb-24 md:mb-40 scroll-mt-28">
-<div class="relative overflow-hidden" style="background:radial-gradient(120% 90% at 80% 0%, rgba(65,195,168,.16) 0%, transparent 55%), linear-gradient(135deg,#0F1A17 0%,#16241F 55%,#0F1A17 100%)">
+<div class="relative overflow-hidden" style="background:radial-gradient(ellipse 80% 65% at 25% 45%, rgba(20,184,166,0.55) 0%, transparent 70%), radial-gradient(ellipse 70% 55% at 70% 20%, rgba(6,182,212,0.30) 0%, transparent 65%), radial-gradient(ellipse 60% 50% at 85% 80%, rgba(5,150,105,0.20) 0%, transparent 60%), #040E0C">
 <div class="max-w-container-max mx-auto px-margin-desktop py-20 lg:py-28">
 <div class="text-center mb-14">
 <p class="text-[14px] font-semibold text-[#7DDECE] mb-3">Onebear AI</p>
@@ -881,53 +883,53 @@
 <!-- FAQ -->
 <section id="faq" data-reveal class="scroll-mt-28">
 <div class="bg-surface-container-low">
-<div class="max-w-3xl mx-auto px-margin-desktop py-16 md:py-20 lg:py-28">
+<div class="max-w-3xl mx-auto px-margin-desktop py-12 md:py-16 lg:py-20">
 <div class="text-center mb-10 md:mb-12">
 <p class="text-[13px] md:text-[14px] font-semibold text-[#15A591] mb-3">FAQ</p>
 <h2 class="font-section-title text-[26px] md:text-section-title font-bold text-on-surface">คำถามที่พบบ่อย</h2>
 </div>
 <div class="flex flex-col gap-3">
 <details class="faq-item bg-white rounded-xl border border-surface-border" open>
-<summary class="flex items-center justify-between gap-3 cursor-pointer px-5 py-4 md:px-6 md:py-5">
+<summary class="flex items-center justify-between gap-3 cursor-pointer px-5 py-4 md:px-6">
 <span class="faq-q text-[16px] md:text-[18px] font-semibold text-on-surface leading-snug">Onebear แตกต่างจากเจ้าอื่นอย่างไร?</span>
 <span class="faq-chev material-symbols-outlined shrink-0 text-on-surface-variant" style="font-size:24px">expand_more</span>
 </summary>
-<div class="px-5 md:px-6 pb-5"><p class="faq-ans font-body-md text-body-md text-on-surface-variant">Onebear เป็นระบบที่รวมทุกแชทไว้โดยเฉพาะ รองรับทุกช่องทาง Social Commerce มี AI ที่ฝึกจากข้อมูลร้านคุณเอง และมีทีมซัพพอร์ตคนไทยพร้อมดูแลตลอด 24/7</p></div>
+<div class="px-5 md:px-6 pb-4"><p class="faq-ans font-body-md text-body-md text-on-surface-variant">Onebear เป็นระบบที่รวมทุกแชทไว้โดยเฉพาะ รองรับทุกช่องทาง Social Commerce มี AI ที่ฝึกจากข้อมูลร้านคุณเอง และมีทีมซัพพอร์ตคนไทยพร้อมดูแลตลอด 24/7</p></div>
 </details>
 <details class="faq-item bg-white rounded-xl border border-surface-border">
-<summary class="flex items-center justify-between gap-3 cursor-pointer px-5 py-4 md:px-6 md:py-5">
+<summary class="flex items-center justify-between gap-3 cursor-pointer px-5 py-4 md:px-6">
 <span class="faq-q text-[16px] md:text-[18px] font-semibold text-on-surface leading-snug">ใช้เวลานานแค่ไหนในการเริ่มต้น?</span>
 <span class="faq-chev material-symbols-outlined shrink-0 text-on-surface-variant" style="font-size:24px">expand_more</span>
 </summary>
-<div class="px-5 md:px-6 pb-5"><p class="faq-ans font-body-md text-body-md text-on-surface-variant">ไม่นานเลย ใช้เวลาเพียง 5–10 นาทีในการเชื่อมต่อช่องทาง Social Media ของคุณและตั้งค่า AI เสร็จก็พร้อมใช้งานได้ทันที</p></div>
+<div class="px-5 md:px-6 pb-4"><p class="faq-ans font-body-md text-body-md text-on-surface-variant">ไม่นานเลย ใช้เวลาเพียง 5–10 นาทีในการเชื่อมต่อช่องทาง Social Media ของคุณและตั้งค่า AI เสร็จก็พร้อมใช้งานได้ทันที</p></div>
 </details>
 <details class="faq-item bg-white rounded-xl border border-surface-border">
-<summary class="flex items-center justify-between gap-3 cursor-pointer px-5 py-4 md:px-6 md:py-5">
+<summary class="flex items-center justify-between gap-3 cursor-pointer px-5 py-4 md:px-6">
 <span class="faq-q text-[16px] md:text-[18px] font-semibold text-on-surface leading-snug">รองรับช่องทางไหนบ้าง?</span>
 <span class="faq-chev material-symbols-outlined shrink-0 text-on-surface-variant" style="font-size:24px">expand_more</span>
 </summary>
-<div class="px-5 md:px-6 pb-5"><p class="faq-ans font-body-md text-body-md text-on-surface-variant">รองรับ 3 ช่องทางหลักของร้านออนไลน์ไทย — Facebook, LINE OA และ Instagram — รวมทุกแชทไว้ในหน้าจอเดียว (และกำลังพัฒนาช่องทางเพิ่มในอนาคต)</p></div>
+<div class="px-5 md:px-6 pb-4"><p class="faq-ans font-body-md text-body-md text-on-surface-variant">รองรับ 3 ช่องทางหลักของร้านออนไลน์ไทย — Facebook, LINE OA และ Instagram — รวมทุกแชทไว้ในหน้าจอเดียว (และกำลังพัฒนาช่องทางเพิ่มในอนาคต)</p></div>
 </details>
 <details class="faq-item bg-white rounded-xl border border-surface-border">
-<summary class="flex items-center justify-between gap-3 cursor-pointer px-5 py-4 md:px-6 md:py-5">
+<summary class="flex items-center justify-between gap-3 cursor-pointer px-5 py-4 md:px-6">
 <span class="faq-q text-[16px] md:text-[18px] font-semibold text-on-surface leading-snug">ใช้ฟรีจริงไหม มีค่าใช้จ่ายแอบแฝงหรือเปล่า?</span>
 <span class="faq-chev material-symbols-outlined shrink-0 text-on-surface-variant" style="font-size:24px">expand_more</span>
 </summary>
-<div class="px-5 md:px-6 pb-5"><p class="faq-ans font-body-md text-body-md text-on-surface-variant">Onebear มีแพ็กเกจฟรีให้ใช้ได้ตลอด ไม่มีกำหนดวันหมดอายุ และไม่ต้องผูกบัตรเครดิต ครอบคลุมฟีเจอร์หลักสำหรับร้านที่เพิ่งเริ่ม เมื่อร้านโตขึ้นค่อยอัปเกรดเป็นแพ็กเกจที่มีฟีเจอร์มากขึ้นได้ — ใช้เท่าที่จำเป็น ไม่มีค่าใช้จ่ายแอบแฝง</p></div>
+<div class="px-5 md:px-6 pb-4"><p class="faq-ans font-body-md text-body-md text-on-surface-variant">Onebear มีแพ็กเกจฟรีให้ใช้ได้ตลอด ไม่มีกำหนดวันหมดอายุ และไม่ต้องผูกบัตรเครดิต ครอบคลุมฟีเจอร์หลักสำหรับร้านที่เพิ่งเริ่ม เมื่อร้านโตขึ้นค่อยอัปเกรดเป็นแพ็กเกจที่มีฟีเจอร์มากขึ้นได้ — ใช้เท่าที่จำเป็น ไม่มีค่าใช้จ่ายแอบแฝง</p></div>
 </details>
 <details class="faq-item bg-white rounded-xl border border-surface-border">
-<summary class="flex items-center justify-between gap-3 cursor-pointer px-5 py-4 md:px-6 md:py-5">
+<summary class="flex items-center justify-between gap-3 cursor-pointer px-5 py-4 md:px-6">
 <span class="faq-q text-[16px] md:text-[18px] font-semibold text-on-surface leading-snug">ข้อมูลลูกค้าปลอดภัยไหม?</span>
 <span class="faq-chev material-symbols-outlined shrink-0 text-on-surface-variant" style="font-size:24px">expand_more</span>
 </summary>
-<div class="px-5 md:px-6 pb-5"><p class="faq-ans font-body-md text-body-md text-on-surface-variant">ข้อมูลทั้งหมดถูกเข้ารหัสและเก็บอย่างปลอดภัยตามมาตรฐาน SSL เราไม่แชร์ข้อมูลกับบุคคลที่สาม และมีระบบสำรองข้อมูลทุกวัน</p></div>
+<div class="px-5 md:px-6 pb-4"><p class="faq-ans font-body-md text-body-md text-on-surface-variant">ข้อมูลทั้งหมดถูกเข้ารหัสและเก็บอย่างปลอดภัยตามมาตรฐาน SSL เราไม่แชร์ข้อมูลกับบุคคลที่สาม และมีระบบสำรองข้อมูลทุกวัน</p></div>
 </details>
 <details class="faq-item bg-white rounded-xl border border-surface-border">
-<summary class="flex items-center justify-between gap-3 cursor-pointer px-5 py-4 md:px-6 md:py-5">
+<summary class="flex items-center justify-between gap-3 cursor-pointer px-5 py-4 md:px-6">
 <span class="faq-q text-[16px] md:text-[18px] font-semibold text-on-surface leading-snug">AI จะตอบลูกค้าแปลก ๆ ทำร้านเสียภาพไหม?</span>
 <span class="faq-chev material-symbols-outlined shrink-0 text-on-surface-variant" style="font-size:24px">expand_more</span>
 </summary>
-<div class="px-5 md:px-6 pb-5"><p class="faq-ans font-body-md text-body-md text-on-surface-variant">AI ตอบจากข้อมูลที่ร้านคุณใส่เท่านั้น ถ้าไม่มั่นใจจะส่งต่อให้แอดมินคนจริง (Smart Handoff) คุณควบคุมได้ว่า AI ตอบอะไรได้บ้าง</p></div>
+<div class="px-5 md:px-6 pb-4"><p class="faq-ans font-body-md text-body-md text-on-surface-variant">AI ตอบจากข้อมูลที่ร้านคุณใส่เท่านั้น ถ้าไม่มั่นใจจะส่งต่อให้แอดมินคนจริง (Smart Handoff) คุณควบคุมได้ว่า AI ตอบอะไรได้บ้าง</p></div>
 </details>
 </div>
 </div>
