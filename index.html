@@ -393,18 +393,12 @@
         @media (max-width:767px){ .feature-stage{ padding:22px; min-height:300px; border-radius:40px; } }
         /* carousel trailing spacer — ensures card 3 can always snap to its left-aligned position */
         .feat-mob-end{ flex-shrink:0; width:calc(100vw - max(82vw, 20rem) - 20px); }
-        /* per-feature colors (non-brand) */
-        .stage-inbox{ --stage-grad:radial-gradient(120% 120% at 75% 12%,rgba(255,255,255,.20),transparent 55%),linear-gradient(135deg,#6D5BD0 0%,#9B8BF4 100%); }
-        .stage-crm{ --stage-grad:radial-gradient(120% 120% at 75% 12%,rgba(255,255,255,.22),transparent 55%),linear-gradient(135deg,#EE8B27 0%,#FBB454 100%); }
-        .stage-analytics{ --stage-grad:radial-gradient(120% 120% at 75% 12%,rgba(255,255,255,.20),transparent 55%),linear-gradient(135deg,#D6418A 0%,#F47BB7 100%); }
-        /* eyebrow chip color matches its feature panel */
-        #panel-inbox .eyebrow{ color:#6D5BD0; }
-        #panel-crm .eyebrow{ color:#D9791F; }
-        #panel-analytics .eyebrow{ color:#D6418A; }
-        /* active tab tinted to its feature color */
-        #tab-inbox[aria-selected="true"]{ background:linear-gradient(135deg,#6D5BD0 0%,#9B8BF4 100%); }
-        #tab-crm[aria-selected="true"]{ background:linear-gradient(135deg,#EE8B27 0%,#FBB454 100%); }
-        #tab-analytics[aria-selected="true"]{ background:linear-gradient(135deg,#D6418A 0%,#F47BB7 100%); }
+        /* brand teal — same gradient across all feature panels */
+        .stage-inbox,.stage-crm,.stage-analytics{ --stage-grad:radial-gradient(120% 120% at 75% 12%,rgba(255,255,255,.20),transparent 55%),linear-gradient(135deg,#1A9E93 0%,#4CD6AA 100%); }
+        /* eyebrow chip — brand teal */
+        #panel-inbox .eyebrow,#panel-crm .eyebrow,#panel-analytics .eyebrow{ color:#1A9E93; }
+        /* active tab — brand teal (overrides .tab-btn[aria-selected="true"] if needed) */
+        #tab-inbox[aria-selected="true"],#tab-crm[aria-selected="true"],#tab-analytics[aria-selected="true"]{ background:linear-gradient(135deg,#35B0A6 0%,#4CD6AA 100%); }
         @media (prefers-reduced-motion: reduce) {
             * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
         }
