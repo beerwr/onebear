@@ -29,7 +29,7 @@
                 "surface-tint": "#41C3A8",
                 "accent-lavender": "#7DDECE",
                 "surface": "#ffffff",
-                "on-surface": "#313937",
+                "on-surface": "#1C1C22",
                 "outline-variant": "#b9cbbd",
                 "surface-variant": "#e2e3e0",
                 "on-secondary-fixed-variant": "#3c389c",
@@ -42,7 +42,7 @@
                 "on-primary-fixed-variant": "#005231",
                 "primary-fixed": "#52ffac",
                 "primary-fixed-dim": "#00e290",
-                "on-background": "#313937",
+                "on-background": "#1C1C22",
                 "surface-container-highest": "#e2e3e0",
                 "on-error": "#ffffff",
                 "on-primary": "#ffffff",
@@ -50,7 +50,7 @@
                 "on-tertiary-container": "#636265",
                 "error-container": "#ffdad6",
                 "on-tertiary-fixed-variant": "#474649",
-                "text-muted": "#525260",
+                "text-muted": "#1C1C22",
                 "primary": "#41C3A8",
                 "surface-container-high": "#e7e8e6",
                 "inverse-surface": "#2e312f",
@@ -59,7 +59,7 @@
                 "tertiary-fixed": "#e5e1e4",
                 "tertiary-fixed-dim": "#c8c6c8",
                 "on-secondary": "#ffffff",
-                "on-surface-variant": "#525260",
+                "on-surface-variant": "#1C1C22",
                 "surface-container-lowest": "#ffffff",
                 "outline": "#6a7b6f",
                 "success-mint": "#41C3A8",
@@ -233,12 +233,12 @@
             color: transparent;
         }
         .glow-button {
-            background: #1C1C22;
+            background: linear-gradient(135deg, #00C48C 0%, #06B6D4 100%);
             transition: opacity 0.2s ease, box-shadow 0.2s ease;
         }
         .glow-button:hover {
             opacity: 0.9;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.10);
+            box-shadow: 0 8px 20px rgba(0, 196, 140, 0.30);
         }
         @media (max-width: 767px) {
           .glow-button{ width:280px; justify-content:center; }
@@ -255,7 +255,7 @@
             background: transparent;
             border: none;
             border-bottom: 1px solid rgba(49, 57, 55, 0.2);
-            color: #313937;
+            color: #1C1C22;
             transition: border-color 0.2s ease, background 0.2s ease;
         }
         .premium-input:focus {
@@ -387,10 +387,10 @@
         .tab-btn{ display:inline-flex; align-items:center; gap:8px; padding:10px 20px; border-radius:999px;
           font-family:'Gofive'; font-weight:600; font-size:14px; line-height:1; color:#525260; background:transparent;
           border:1px solid transparent; cursor:pointer; white-space:nowrap; transition:border-color .2s, color .2s, background .2s; }
-        .tab-btn:hover{ background:#f3f4f1; color:#313937; }
+        .tab-btn:hover{ background:#f3f4f1; color:#1C1C22; }
         .tab-btn .material-symbols-outlined{ font-size:18px; }
-        .tab-btn[aria-selected="true"]{ background:linear-gradient(135deg,#35B0A6 0%,#4CD6AA 100%); color:#fff; border-color:transparent; }
-        .tab-btn[aria-selected="true"]:hover{ color:#fff; }
+        .tab-btn[aria-selected="true"]{ background:#1C1C22; color:#fff; border-color:transparent; }
+        .tab-btn[aria-selected="true"]:hover{ color:#fff; opacity:.9; }
         .tab-btn:focus-visible{ outline:none; box-shadow:0 0 0 3px rgba(65,195,168,.45); }
         .tabpanel{ animation: tabIn .25s ease; }
         .tabpanel[hidden]{ display:none; }
@@ -410,8 +410,8 @@
         .stage-inbox,.stage-crm,.stage-analytics{ --stage-grad:radial-gradient(120% 120% at 75% 12%,rgba(255,255,255,.20),transparent 55%),linear-gradient(135deg,#1A9E93 0%,#4CD6AA 100%); }
         /* eyebrow chip — brand teal */
         #panel-inbox .eyebrow,#panel-crm .eyebrow,#panel-analytics .eyebrow{ color:#1A9E93; }
-        /* active tab — brand teal (overrides .tab-btn[aria-selected="true"] if needed) */
-        #tab-inbox[aria-selected="true"],#tab-crm[aria-selected="true"],#tab-analytics[aria-selected="true"]{ background:linear-gradient(135deg,#35B0A6 0%,#4CD6AA 100%); }
+        /* active tab — near-black */
+        #tab-inbox[aria-selected="true"],#tab-crm[aria-selected="true"],#tab-analytics[aria-selected="true"]{ background:#1C1C22; }
         @media (prefers-reduced-motion: reduce) {
             * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
         }
@@ -449,7 +449,7 @@
 <section id="hero" class="max-w-container-max mx-auto px-margin-desktop relative scroll-mt-28 pt-2">
 <div class="text-center max-w-3xl mx-auto mb-16 relative z-10">
 <img src="assets/logos/horizontal-white-logo.svg" alt="Onebear" class="h-16 md:h-20 w-auto mx-auto mb-8"/>
-<h1 class="font-display-lg text-[44px] md:text-[58px] lg:text-[66px] leading-[1.3] font-bold text-on-surface mb-6">ทุกแช็ตที่ตอบช้าคือ<br/><span class="font-gradient">ยอดขายที่หลุดมือ</span></h1>
+<h1 class="font-display-lg text-[44px] md:text-[58px] lg:text-[66px] leading-[1.3] font-bold text-on-surface mb-6">ทุกแช็ตที่ตอบช้าคือ<br/>ยอดขายที่หลุดมือ</h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-2xl mx-auto">Onebear รวมทุกแช็ตจาก Facebook, LINE OA และ Instagram ไว้ในจอเดียว พร้อม AI ที่ตอบลูกค้าและปิดการขายแทนคุณตลอด 24 ชม. ไม่พลาดทุกโอกาสขาย</p>
 <div class="flex flex-col items-center gap-3">
 <a href="https://app.onebear.ai/register" class="glow-button inline-flex items-center justify-center gap-2 text-white text-sm font-semibold px-8 py-4 rounded-full hover:opacity-90 transition-opacity group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface focus-visible:ring-offset-2">เริ่มใช้งานฟรี <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" style="font-size:18px">arrow_forward</span></a>
@@ -511,7 +511,7 @@
 </div>
 <div data-reveal class="mt-16 max-w-4xl mx-auto rounded-[28px] bg-white overflow-hidden flex flex-col md:flex-row items-stretch shadow-[0_20px_50px_-12px_rgba(15,23,42,0.18)]">
 <div class="flex-1 p-8 lg:p-12 flex flex-col items-start justify-center">
-<h3 class="font-headline-sm text-headline-sm mb-6 max-w-md leading-snug"><span class="text-on-surface">Onebear เปลี่ยนแช็ตที่หลุดมือ</span><br/><span class="font-gradient">ให้กลับมาเป็นยอดขายได้ทันที</span></h3>
+<h3 class="font-headline-sm text-headline-sm mb-6 max-w-md leading-snug text-on-surface">Onebear เปลี่ยนแช็ตที่หลุดมือ<br/>ให้กลับมาเป็นยอดขายได้ทันที</h3>
 <a href="https://app.onebear.ai/register" class="glow-button inline-flex items-center justify-center gap-2 text-white text-sm font-semibold px-8 py-4 rounded-full hover:opacity-90 transition-opacity group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface focus-visible:ring-offset-2">เริ่มใช้งานฟรี <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" style="font-size:18px">arrow_forward</span></a>
 </div>
 <div class="w-full md:w-80 lg:w-96 flex items-end justify-center md:justify-end overflow-hidden">
@@ -653,9 +653,9 @@
 <div class="flex items-start gap-4">
 <span class="ai-icon w-9 h-9 md:w-11 md:h-11 rounded-full flex items-center justify-center shrink-0"><span class="material-symbols-outlined">smart_toy</span></span>
 <div class="flex-1 min-w-0">
-<h3 class="ai-title text-[17px] md:text-[18px] font-semibold">ตอบลูกค้าอัตโนมัติ 24 ชม.</h3>
-<p class="ai-desc text-sm mt-1.5">AI ตอบทุกข้อความทันที แม้นอกเวลาทำการ — ไม่พลาดทุกโอกาสขาย</p>
-<div class="ai-track mt-4 h-1 rounded-full overflow-hidden bg-white/10"><div class="ai-bar h-full w-full rounded-full" style="background:linear-gradient(90deg,#35B0A6,#4CD6AA)"></div></div>
+<h3 class="ai-title text-[17px] md:text-[18px] font-semibold">AI Sales Agent</h3>
+<p class="ai-desc text-sm mt-1.5">ตอบลูกค้าอัตโนมัติ 24 ชม. ลูกค้าทักมาเมื่อไหร่ AI ก็พร้อมตอบทันที ตั้งแต่แนะนำสินค้า ตอบคำถาม ไปจนถึงช่วยสร้างออเดอร์และส่งช่องทางชำระเงิน ช่วยเพิ่มโอกาสปิดการขายแม้ตอนร้านไม่ออนไลน์</p>
+<div class="ai-track mt-4 h-1 rounded-full overflow-hidden bg-white/10"><div class="ai-bar h-full w-full rounded-full" style="background:linear-gradient(90deg,#00C48C,#06B6D4)"></div></div>
 </div>
 </div>
 </button>
@@ -663,9 +663,9 @@
 <div class="flex items-start gap-4">
 <span class="ai-icon w-9 h-9 md:w-11 md:h-11 rounded-full flex items-center justify-center shrink-0"><span class="material-symbols-outlined">school</span></span>
 <div class="flex-1 min-w-0">
-<h3 class="ai-title text-[17px] md:text-[18px] font-semibold">ฝึกจากข้อมูลร้านคุณ</h3>
-<p class="ai-desc text-sm mt-1.5">อัปโหลดสินค้าและโปรโมชัน AI เรียนรู้และตอบในสไตล์แบรนด์คุณเอง</p>
-<div class="ai-track mt-4 h-1 rounded-full overflow-hidden bg-white/10"><div class="ai-bar h-full w-full rounded-full" style="background:linear-gradient(90deg,#35B0A6,#4CD6AA)"></div></div>
+<h3 class="ai-title text-[17px] md:text-[18px] font-semibold">Smart Handoff</h3>
+<p class="ai-desc text-sm mt-1.5">AI ส่งต่อแช็ตให้ทีมแบบไร้รอยต่อ เมื่อ AI เจอเคสซับซ้อนหรือข้อมูลที่ต้องให้แอดมินดูแลต่อ ระบบจะส่งต่อพร้อมสรุปบทสนทนาให้อัตโนมัติ ช่วยให้ทีมตอบลูกค้าได้ต่อเนื่อง ลูกค้าไม่ต้องเล่าใหม่ซ้ำอีกครั้ง</p>
+<div class="ai-track mt-4 h-1 rounded-full overflow-hidden bg-white/10"><div class="ai-bar h-full w-full rounded-full" style="background:linear-gradient(90deg,#00C48C,#06B6D4)"></div></div>
 </div>
 </div>
 </button>
@@ -673,9 +673,9 @@
 <div class="flex items-start gap-4">
 <span class="ai-icon w-9 h-9 md:w-11 md:h-11 rounded-full flex items-center justify-center shrink-0"><span class="material-symbols-outlined">support_agent</span></span>
 <div class="flex-1 min-w-0">
-<h3 class="ai-title text-[17px] md:text-[18px] font-semibold">Smart Handoff</h3>
-<p class="ai-desc text-sm mt-1.5">เมื่อ AI ไม่มั่นใจ ส่งต่อให้แอดมินคนจริงอย่างไร้รอยต่อ</p>
-<div class="ai-track mt-4 h-1 rounded-full overflow-hidden bg-white/10"><div class="ai-bar h-full w-full rounded-full" style="background:linear-gradient(90deg,#35B0A6,#4CD6AA)"></div></div>
+<h3 class="ai-title text-[17px] md:text-[18px] font-semibold">Customer Insights</h3>
+<p class="ai-desc text-sm mt-1.5">เข้าใจลูกค้าแบบลึกกว่าเดิม AI วิเคราะห์พฤติกรรมลูกค้า แยกกลุ่มอัตโนมัติ และแจ้งเตือนลูกค้าที่กำลังหายไป เพื่อช่วยเพิ่มยอดซื้อซ้ำและมูลค่าตลอดอายุลูกค้า</p>
+<div class="ai-track mt-4 h-1 rounded-full overflow-hidden bg-white/10"><div class="ai-bar h-full w-full rounded-full" style="background:linear-gradient(90deg,#00C48C,#06B6D4)"></div></div>
 </div>
 </div>
 </button>
@@ -685,7 +685,7 @@
 <div class="flex items-center gap-2 mb-4"><span class="w-8 h-8 rounded-full bg-[#41C3A8] flex items-center justify-center"><span class="material-symbols-outlined text-[#0c1714] text-[16px]" style="font-variation-settings:'FILL' 1">smart_toy</span></span><span class="text-white/85 text-sm font-semibold">Onebear AI</span><span class="ml-auto inline-flex items-center gap-1 text-[11px] text-[#7DDECE]"><span class="w-1.5 h-1.5 rounded-full bg-[#41C3A8]"></span>กำลังตอบ</span></div>
 <div class="space-y-3">
 <div class="flex justify-start"><div class="bg-white/10 text-white/90 text-[13px] rounded-2xl rounded-tl-sm px-3 py-2 max-w-[80%]">สนใจสินค้าตัวนี้ มีสีอะไรบ้างคะ</div></div>
-<div class="flex justify-end"><div class="text-[#0c1714] text-[13px] rounded-2xl rounded-tr-sm px-3 py-2 max-w-[85%]" style="background:linear-gradient(135deg,#35B0A6,#4CD6AA)">มี 3 สีค่ะ — ขาว ดำ เขียว พร้อมส่งทันที สนใจสีไหนดีคะ?</div></div>
+<div class="flex justify-end"><div class="text-[#0c1714] text-[13px] rounded-2xl rounded-tr-sm px-3 py-2 max-w-[85%]" style="background:linear-gradient(135deg,#00C48C,#06B6D4)">มี 3 สีค่ะ — ขาว ดำ เขียว พร้อมส่งทันที สนใจสีไหนดีคะ?</div></div>
 </div></div></div>
 <div class="ai-panel" data-i="1"><div class="ai-win p-5">
 <p class="text-white/85 text-sm font-semibold mb-4">ฐานความรู้ของร้านคุณ</p>
@@ -694,7 +694,7 @@
 </div></div>
 <div class="ai-panel" data-i="2"><div class="ai-win p-5">
 <div class="space-y-3">
-<div class="flex justify-end"><div class="text-[#0c1714] text-[13px] rounded-2xl rounded-tr-sm px-3 py-2 max-w-[85%]" style="background:linear-gradient(135deg,#35B0A6,#4CD6AA)">เรื่องนี้ขอให้แอดมินช่วยดูแลต่อนะคะ</div></div>
+<div class="flex justify-end"><div class="text-[#0c1714] text-[13px] rounded-2xl rounded-tr-sm px-3 py-2 max-w-[85%]" style="background:linear-gradient(135deg,#00C48C,#06B6D4)">เรื่องนี้ขอให้แอดมินช่วยดูแลต่อนะคะ</div></div>
 <div class="flex justify-center"><span class="inline-flex items-center gap-1.5 text-[11px] text-white/70 bg-white/10 rounded-full px-3 py-1"><span class="material-symbols-outlined text-[13px]">swap_horiz</span>ส่งต่อให้แอดมิน · Smart Handoff</span></div>
 <div class="flex justify-start"><div class="bg-white/10 text-white/90 text-[13px] rounded-2xl rounded-tl-sm px-3 py-2 max-w-[80%]">สวัสดีค่ะ แอดมินมินตรารับเรื่องต่อเองค่ะ 🙂</div></div>
 </div></div></div>
@@ -756,7 +756,7 @@
       <p class="text-[22px] font-bold leading-none mb-3">Free Plan</p>
       <p class="text-[80px] font-bold leading-none">ฟรี</p>
     </div>
-    <a href="https://app.onebear.ai/register" class="glow-button inline-flex items-center justify-center gap-2 text-white text-sm font-semibold px-8 py-4 rounded-full hover:opacity-90 transition-opacity group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface focus-visible:ring-offset-2">เริ่มใช้งานฟรี <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" style="font-size:18px">arrow_forward</span></a>
+    <a href="https://app.onebear.ai/register" class="glow-button inline-flex items-center justify-center gap-2 text-white text-sm font-semibold px-8 py-4 rounded-full hover:opacity-90 transition-opacity group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-on-surface focus-visible:ring-offset-2" style="background:#1C1C22">เริ่มใช้งานฟรี <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" style="font-size:18px">arrow_forward</span></a>
   </div>
   <!-- Right: features + mascot -->
   <div class="relative flex flex-col justify-center gap-5 px-10 py-12 flex-1 min-w-0">
@@ -789,7 +789,7 @@
 <section id="pricing-legacy" data-reveal class="max-w-container-max mx-auto px-margin-desktop mb-24 md:mb-40 scroll-mt-28" style="display:none">
 <div class="mb-8 text-center flex flex-col items-center">
 <span class="font-eyebrow text-eyebrow eyebrow mb-3">แผนราคาที่ยืดหยุ่นสำหรับทุกขนาดธุรกิจ</span>
-<h2 class="font-section-title text-section-title text-on-surface mb-4 max-w-4xl [text-wrap:balance]">ปลดล็อกด้วยพลัง AI <span class="font-gradient">แบบไร้ขีดจำกัด</span></h2>
+<h2 class="font-section-title text-section-title text-on-surface mb-4 max-w-4xl [text-wrap:balance]">ปลดล็อกด้วยพลัง AI แบบไร้ขีดจำกัด</h2>
 <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">เสริมศักยภาพทีมขายและการตลาดให้เข้าถึงลูกค้าได้อย่างตรงใจ เพิ่มโอกาสปิดการขาย และสร้างประสบการณ์ดูแลลูกค้าแบบมืออาชีพตลอด 24 ชั่วโมง</p>
 </div>
 <!-- Billing toggle -->
@@ -879,7 +879,7 @@
 <span class="faq-q text-[16px] md:text-[18px] font-semibold text-on-surface leading-snug">Onebear รองรับช่องทางไหนบ้าง?</span>
 <span class="faq-chev material-symbols-outlined shrink-0 text-on-surface-variant" style="font-size:24px">expand_more</span>
 </summary>
-<div class="px-5 md:px-6 pb-4"><p class="faq-ans font-body-md text-body-md text-on-surface-variant">Onebear สามารถรวมแชทจาก LINE OA, Facebook Messenger และ Instagram ไว้ในหน้าจอเดียว ช่วยให้ทีมตอบลูกค้าได้สะดวกขึ้นโดยไม่ต้องสลับหลายแอป</p></div>
+<div class="px-5 md:px-6 pb-4"><p class="faq-ans font-body-md text-body-md text-on-surface-variant">Onebear สามารถรวมแช็ตจาก LINE OA, Facebook Messenger และ Instagram ไว้ในหน้าจอเดียว ช่วยให้ทีมตอบลูกค้าได้สะดวกขึ้นโดยไม่ต้องสลับหลายแอป</p></div>
 </details>
 <details class="faq-item bg-white rounded-xl border border-surface-border">
 <summary class="flex items-center justify-between gap-3 cursor-pointer px-5 py-4 md:px-6">
@@ -915,13 +915,13 @@
 </section>
 <!-- Final CTA banner -->
 <section id="cta" class="scroll-mt-28">
-<div class="text-white text-center relative overflow-hidden" style="background:linear-gradient(135deg,#35B0A6 0%,#41C3A8 50%,#4CD6AA 100%)">
+<div class="text-white text-center relative overflow-hidden" style="background:linear-gradient(135deg,#00C48C 0%,#06B6D4 100%)">
 <img src="assets/illustrations/cta-bear.png" alt="Onebear mascot" class="hidden md:block absolute left-[8%] lg:left-[16%] -bottom-[75px] lg:-bottom-[105px] w-[190px] lg:w-[280px] -rotate-6 pointer-events-none select-none z-0" aria-hidden="true"/>
 <div data-reveal class="relative z-10 max-w-2xl mx-auto px-margin-desktop py-12 md:py-20 lg:py-24 flex flex-col items-center">
 <img src="assets/illustrations/cta-bear.png" alt="" class="block md:hidden w-24 mb-4 -rotate-6 pointer-events-none select-none" aria-hidden="true"/>
 <h2 class="font-section-title text-[30px] md:text-[44px] leading-[1.3] font-bold mb-4">เร่งการเติบโตของธุรกิจคุณ<br/>อย่างทรงพลังด้วย Onebear</h2>
 <p class="font-body-md text-body-md md:text-lg text-white/90 mb-8 max-w-xl">เริ่มต้นใช้งานฟรีวันนี้ เพื่อยกระดับการดูแลลูกค้า เพิ่มโอกาสปิดการขาย และสร้างประสบการณ์ที่เหนือกว่าในทุกการสื่อสาร</p>
-<a href="https://app.onebear.ai/register" class="glow-button inline-flex items-center justify-center gap-2 text-white text-sm font-semibold px-8 py-4 rounded-full hover:opacity-90 transition-opacity group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#41C3A8]">เริ่มใช้งานฟรี <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" style="font-size:18px">arrow_forward</span></a>
+<a href="https://app.onebear.ai/register" class="glow-button inline-flex items-center justify-center gap-2 text-white text-sm font-semibold px-8 py-4 rounded-full hover:opacity-90 transition-opacity group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#41C3A8]" style="background:#1C1C22">เริ่มใช้งานฟรี <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" style="font-size:18px">arrow_forward</span></a>
 <p class="text-white/75 font-body-sm text-body-sm mt-5">เริ่มฟรีได้ตลอด ไม่มีกำหนด · ไม่ต้องใช้บัตรเครดิต · อัปเกรดเมื่อพร้อม</p>
 </div>
 </div>
