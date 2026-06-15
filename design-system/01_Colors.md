@@ -22,7 +22,7 @@ source: Brand Guide (official)
 1. **ใช้ token ไม่ใช่ HEX** — `--color-primary` ไม่ใช่ `#41C3A8`
 2. **5 สีหลักจาก Brand Guide** — Teal, BG Gradient, Font Gradient, Dark Gray, Pastel Pink
 3. **Gradient แยกเป็น 2 ชุด** — `--gradient-bg` (section/card) vs `--gradient-font` (text gradient)
-4. **Dark Gray `#313937` = heading/dark element** — ไม่ใช่ pure black
+4. **Near-black `#1C1C22` = heading/text/dark element หลัก** — ใช้ทุกจุด (v3.1+)
 5. **เคารพ contrast WCAG AA** — text + background ≥ 4.5:1
 
 ---
@@ -36,7 +36,7 @@ source: Brand Guide (official)
 | 1 | `#41C3A8` | **Primary Logo** | C: 65% M: 0% Y: 40% K: 0% | สี brand หลัก — logo, icon, eyebrow, active |
 | 2 | `#35B0A6 → #4CD6AA` | **Background Gradient** | Start: C:75 M:0 Y:40 K:0 / End: C:55 M:0 Y:45 K:0 | background section, card, decorative |
 | 3 | `#5CC3B4 → #15A591` | **Font Gradient** | Start: C:55 M:0 Y:30 K:0 / End: C:80 M:0 Y:45 K:0 | text gradient, heading accent |
-| 4 | `#313937` | **Dark Gray** | C: 60% M: 45% Y: 50% K: 75% | heading text, dark bg, dark elements |
+| 4 | `#313937` | **Dark Gray** (brand original) | C: 60% M: 45% Y: 50% K: 75% | brand guide reference — web v3.1 ใช้ `#1C1C22` แทน |
 | 5 | `#FFBEBF` | **Pastel Pink** | C: 0% M: 25% Y: 15% K: 0% | mascot blush, accent warm, illustration |
 
 ---
@@ -120,29 +120,28 @@ source: Brand Guide (official)
 
 ---
 
-## ⬛ Dark Gray — `#313937`
+## ⬛ Near-black — `#1C1C22` ⭐ (v3.1 Primary Dark)
 
-> สีเข้มหลักของ Onebear — **ไม่ใช่ pure black** มี warm-green undertone เล็กน้อย
-> ทำให้ดูอบอุ่นกว่า `#000000` และเข้ากับ teal ได้ดีกว่า
+> สีเข้มหลักของ Onebear web v3.1 — **ใช้ทุกจุด**: heading, body text, ปุ่ม, footer
+> เข้มกว่า brand Dark Gray `#313937` เล็กน้อย — premium feel, contrast สูงกว่า
 
 ```css
 :root {
-  --color-dark:        #313937;  /* Dark Gray — heading, dark bg ⭐ */
-  --color-dark-80:     rgba(49,57,55,0.80);  /* 80% opacity */
-  --color-dark-50:     rgba(49,57,55,0.50);  /* Footer links, muted */
-  --color-dark-20:     rgba(49,57,55,0.20);  /* Overlay, subtle bg */
-  --color-button-dark: #1C1C22;  /* Near-black — primary CTA button (v3.1) ⭐ */
+  --color-dark:        #1C1C22;  /* Near-black — heading, text, button, footer ⭐ */
+  --color-dark-80:     rgba(28,28,34,0.80);
+  --color-dark-50:     rgba(28,28,34,0.50);  /* Footer links, muted */
+  --color-dark-20:     rgba(28,28,34,0.20);  /* Overlay, subtle bg */
 }
 ```
 
-> 🔄 **v3.1 (เว็บ landing):** **ปุ่ม CTA primary ใช้ Near-black `#1C1C22`** (เข้มกว่า Dark Gray) — `#313937` สงวนไว้สำหรับ **text/heading/footer/tab** เท่านั้น ไม่ใช่สีปุ่มอีกต่อไป → ดู [[04_Buttons]] · [[08_Landing-v3]]
+> 🔄 **v3.1 (เว็บ landing):** `#1C1C22` = **สีเข้มหลักทุกอย่าง** — heading, body text เข้ม, ปุ่ม CTA, footer bg → `#313937` (brand original) เลิกใช้ใน web UI
 
 **ใช้เมื่อ:**
 - ✅ Heading text หลักทั้งหมด (H1–H5)
 - ✅ Body text เข้ม (article, description)
-- ✅ ~~Dark button background~~ → **ปุ่ม CTA ใช้ `#1C1C22`** (v3.1); `#313937` = text/footer
-- ✅ Footer background (ใช้ร่วมกับ opacity หรือเข้มกว่าอีกนิด)
-- ❌ Pure black สำหรับ text — ใช้ Dark Gray เสมอ
+- ✅ ปุ่ม CTA dark (glow-button, btn-dark, btn-dark-hero)
+- ✅ Footer background
+- ❌ Pure black — `#1C1C22` เป็น near-black เสมอ ไม่ใช้ `#000000`
 
 ---
 
@@ -174,7 +173,7 @@ source: Brand Guide (official)
 
 | Token | HEX | Name | Usage |
 |---|---|---|---|
-| `--color-neutral-1000` | `#313937` | **Dark Gray** ⭐ | = brand dark — heading หลัก |
+| `--color-neutral-1000` | `#1C1C22` | **Near-black** ⭐ | = brand dark v3.1 — heading/text หลัก |
 | `--color-neutral-900`  | `#334155` | Slate | Body text |
 | `--color-neutral-800`  | `#525260` | Secondary | Secondary text, description |
 | `--color-neutral-700`  | `#64748B` | Muted | Tertiary, placeholder |
@@ -187,7 +186,7 @@ source: Brand Guide (official)
 
 ```css
 :root {
-  --color-neutral-1000: #313937;   /* = --color-dark */
+  --color-neutral-1000: #1C1C22;   /* = --color-dark (v3.1) */
   --color-neutral-900:  #334155;
   --color-neutral-800:  #525260;
   --color-neutral-700:  #64748B;
@@ -208,13 +207,13 @@ source: Brand Guide (official)
 :root {
   --color-footer-bg:     #0C0B15;              /* อาจใช้ dark ตาม Figma */
   /* หรือ */
-  --color-footer-bg-alt: var(--color-dark);    /* #313937 brand dark */
+  --color-footer-bg-alt: var(--color-dark);    /* #1C1C22 near-black (v3.1) */
   --color-footer-text:   rgba(255,255,255,0.5);
   --color-footer-border: rgba(255,255,255,0.08);
 }
 ```
 
-> 💡 ตรวจจาก Figma ว่า footer ใช้ `#0C0B15` หรือ `#313937` — ทั้งสองแบบ compatible กับ brand
+> 💡 v3.1 footer ใช้ `#1C1C22` (= `--color-dark`) — ยืนยันแล้ว
 
 ---
 
@@ -234,7 +233,7 @@ source: Brand Guide (official)
 ```css
 :root {
   /* Text */
-  --color-text-heading:   var(--color-dark);          /* #313937 */
+  --color-text-heading:   var(--color-dark);          /* #1C1C22 */
   --color-text-body:      var(--color-neutral-900);   /* #334155 */
   --color-text-secondary: var(--color-neutral-800);   /* #525260 */
   --color-text-muted:     var(--color-neutral-700);   /* #64748B */

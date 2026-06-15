@@ -14,7 +14,7 @@ uses: [[01_Colors]], [[02_Typography]], [[03_Spacing]]
 > ต่างจาก makub ที่ใช้ LINE Green — Onebear ใช้ gradient แบรนด์ของตัวเอง
 
 > 🔄 **อัปเดต v3.1 (ใช้กับเว็บ landing — ยึดอันนี้):** **Primary CTA = Near-black `#1C1C22`** (pill, hover opacity .9, ไม่มี glow) ทุกจุด — hero / form / CTA section
-> · _(v3 เดิมใช้ `#313937` → v3.1 เข้มขึ้นเป็น `#1C1C22`; `#313937` สงวนไว้เป็น text/heading/footer/tab เท่านั้น)_
+> · _(v3 เดิมใช้ `#313937` → v3.1 ใช้ `#1C1C22` ทุกอย่าง: ปุ่ม + heading/text + footer)_
 > · **Teal gradient `#35B0A6→#4CD6AA` ลดเป็น accent** (เช่น active tab) ไม่ใช่ปุ่ม CTA หลักอีกต่อไป
 > · เหตุผล: ขาวบนดำ ~16:1 (AAA), premium กว่า, ทำให้ teal เด้งเฉพาะจุด → ดู [[08_Landing-v3]]
 
@@ -40,7 +40,7 @@ uses: [[01_Colors]], [[02_Typography]], [[03_Spacing]]
 | ระดับปุ่ม | สี | ใช้เมื่อ |
 |---|---|---|
 | **Primary Gradient** | 🩵 `#35B0A6→#4CD6AA` BG gradient | ปุ่ม featured — Growth plan, CTA section, ribbon |
-| **Primary Dark** | ⚫ Dark Gray `#313937` | ปุ่ม hero, navbar "เริ่มใช้งานฟรี" |
+| **Primary Dark** | ⚫ Near-black `#1C1C22` | ปุ่ม hero, navbar "เริ่มใช้งานฟรี" |
 | **Secondary Outline** | 🩵 Teal outline | ปุ่ม Free/Starter plan, secondary action |
 | **Tertiary / Text** | 🩵 Teal text | link-like, action เบา |
 
@@ -87,7 +87,7 @@ uses: [[01_Colors]], [[02_Typography]], [[03_Spacing]]
 
 ```css
 .btn-primary-dark {
-  background: var(--color-dark);                /* #313937 */
+  background: var(--color-dark);                /* #1C1C22 */
   color: white;
   font-family: var(--font-family-base);
   font-size: var(--font-size-title);            /* 16px */
@@ -171,8 +171,8 @@ uses: [[01_Colors]], [[02_Typography]], [[03_Spacing]]
 /* <style type="text/tailwindcss"> */
 .btn         { @apply inline-flex items-center justify-center gap-2 rounded-full transition-all; }
 .btn-gradient  { @apply bg-gradient-to-r from-[#35B0A6] to-[#4CD6AA] text-white text-sm font-semibold px-8 py-4 shadow-[0_8px_10px_rgba(0,0,0,0.04)] hover:opacity-90; }
-.btn-dark      { @apply bg-[#313937] text-white text-sm font-semibold px-4 py-2; }
-.btn-dark-hero { @apply bg-[#313937] text-white text-base font-bold px-10 py-4; }
+.btn-dark      { @apply bg-[#1C1C22] text-white text-sm font-semibold px-4 py-2; }
+.btn-dark-hero { @apply bg-[#1C1C22] text-white text-base font-bold px-10 py-4; }
 .btn-outline { @apply border border-[rgba(0,196,140,0.35)] text-[#00C48C] text-sm font-semibold py-[13px] px-1 w-full hover:bg-[#E8FAF6]; }
 .btn-iris    { @apply border-[1.5px] border-[#dfdfe8] text-[#525260] text-sm font-semibold px-4 py-2 hover:border-[#41C3A8] hover:text-[#41C3A8]; }  /* Login button */
 .btn-block   { @apply w-full; }

@@ -42,14 +42,14 @@ Onebear เป็น **แพลตฟอร์มรวมแชทที่เ
 | **Primary color** | `#41C3A8` — Teal (Primary Logo) |
 | **BG Gradient** | `#35B0A6 → #4CD6AA` — Background/card gradient |
 | **Font Gradient** | `#5CC3B4 → #15A591` — Text gradient (heading accent) |
-| **Dark** | `#313937` — Dark Gray (heading text, dark CTA) |
+| **Dark** | `#1C1C22` — Near-black (heading text, dark CTA, footer) _(v3.1+)_ |
 | **Accent warm** | `#FFBEBF` — Pastel Pink (mascot blush, illustration) |
 | **Font** | Gofive — ✅ ไฟล์อยู่ใน `fonts/` แล้ว (4 น้ำหนัก) |
 | **Assets** | ✅ Logo ครบทุก variant อยู่ใน `assets/` แล้ว |
 | **Spacing** | 4px base, premium product modern |
 | **Radius** | โค้งมน — pricing card 22–24px, button pill |
 
-> ⚠️ **อัปเดต v3 (เว็บ landing):** Primary CTA = **Dark Gray `#313937`** (ไม่ใช่ gradient อีกต่อไป), teal = accent · **letter-spacing 0 ทั้งหมด** · page bg = **cream `#faf9f5`** · loss stat = **red `#E5484D`** → รายละเอียดที่ [[08_Landing-v3]]
+> ⚠️ **อัปเดต v3.1 (เว็บ landing):** Primary dark = **Near-black `#1C1C22`** ทุกอย่าง (ปุ่ม + heading/text + footer), teal = accent · **letter-spacing 0 ทั้งหมด** · loss stat = **red `#E5484D`** → รายละเอียดที่ [[08_Landing-v3]]
 
 ---
 
@@ -71,7 +71,7 @@ Onebear เป็น **แพลตฟอร์มรวมแชทที่เ
 ## 🚦 หลักการสำคัญ 5 ข้อ
 
 1. **ใช้ token ไม่ใช่ HEX** — `var(--color-primary-500)` ไม่ใช่ `#41C3A8`
-2. **Primary CTA = Dark Gray `#313937`** — (อัปเดต v3) ปุ่มหลักใช้ดำ · gradient/teal = accent เท่านั้น → ดู [[04_Buttons]] · [[08_Landing-v3]]
+2. **Primary dark = Near-black `#1C1C22`** — ปุ่ม CTA + heading/text + footer ทุกจุด · gradient/teal = accent เท่านั้น → ดู [[04_Buttons]] · [[08_Landing-v3]]
 3. **Teal ใช้เน้นเฉพาะจุด** — eyebrow/accent/active state ไม่ใช่ background หลัก และ "อย่าใส่พร่ำเพรื่อ" (โทน aave: นิ่ง)
 4. **Letter-spacing = 0** — ฟอนต์ไทยไม่ใส่ tracking ติดลบ (ตัวชนกัน) → ดู [[02_Typography]]
 5. **White space = Premium** — ใจป้ำกับช่องว่าง (section 96/160px), flat > card อย่าให้รก → ดู [[03_Spacing]]
@@ -89,4 +89,4 @@ Onebear เป็น **แพลตฟอร์มรวมแชทที่เ
 
 ---
 
-> 🐻 **Onebear = Teal `#41C3A8` · BG Gradient `#35B0A6→#4CD6AA` · Font Gradient `#5CC3B4→#15A591` · Dark `#313937` · Pink `#FFBEBF`**
+> 🐻 **Onebear = Teal `#41C3A8` · BG Gradient `#35B0A6→#4CD6AA` · Font Gradient `#5CC3B4→#15A591` · Dark `#1C1C22` · Pink `#FFBEBF`**

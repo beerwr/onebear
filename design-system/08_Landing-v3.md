@@ -33,12 +33,12 @@ supersedes_partially: [[04_Buttons]], [[07_Web-Patterns]]
 
 ## 🎨 Color usage (restraint แบบ aave)
 
-- พื้นหลังหน้า = **Cream `#faf9f5`** · heading/text เข้ม = **Dark Gray `#313937`** · text รอง = `#525260`
+- พื้นหลังหน้า = **White `#ffffff`** · heading/text เข้ม = **Near-black `#1C1C22`** · text รอง = `#525260`
 - **Teal `#41C3A8` / deep teal `#15A591` = accent เฉพาะจุด** เท่านั้น (active tab, พาเนล signup, คีย์เวิร์ด gradient ใน heading, เครื่องหมายเช็ก)
 - ❌ เลิกใส่ teal พร่ำเพรื่อ (eyebrow, ไอคอนชิป, จุด, การ์ด) → ทำให้ "รก"
 - **สีของ stat = ตาม semantic ของ "ค่า" ไม่ใช่สไตล์:**
   - 🔴 **Negative / loss = Red `#E5484D`** — ตัวเลขที่สื่อ "สิ่งที่กำลังเสีย/ปัญหา" (เช่น ~42% ลูกค้าหลุด, ฿20K+ ที่เสียไป) → ใช้แดงเพื่อสื่อความเจ็บปวด
-  - ⚫ **Positive / neutral fact = Dark Gray `#313937`** — ตัวเลขความสำเร็จ/สถิติทั่วไป (เช่น "12,000 ร้านใช้งาน")
+  - ⚫ **Positive / neutral fact = Near-black `#1C1C22`** — ตัวเลขความสำเร็จ/สถิติทั่วไป (เช่น "12,000 ร้านใช้งาน")
   - 🩵 **Positive ที่อยาก celebrate = Teal `#41C3A8`** — ผลลัพธ์ดีที่อยากให้เด้ง (เช่น "+38 ปิดการขาย")
   - ❌ อย่าใช้แดงกับตัวเลขที่เป็นบวก — แดงสงวนไว้สำหรับ "ค่าลบ" เท่านั้น
 - กรอบ/surface ที่ต้องมีพื้น = **neutral `#f3f4f1` / `#E5E4DE` border** ไม่ใช่ mint
@@ -49,10 +49,10 @@ supersedes_partially: [[04_Buttons]], [[07_Web-Patterns]]
 
 ```html
 <!-- Primary (ใช้ทุกที่: hero, form, CTA card, section CTA) -->
-<a class="bg-[#313937] text-white font-semibold rounded-full px-8 py-4 hover:opacity-90">เริ่มใช้งานฟรี</a>
+<a class="bg-[#1C1C22] text-white font-semibold rounded-full px-8 py-4 hover:opacity-90">เริ่มใช้งานฟรี</a>
 ```
 
-- **Primary = Dark Gray `#313937`** pill · hover `opacity .9` · ไม่มี glow สี
+- **Primary = Near-black `#1C1C22`** pill · hover `opacity .9` · ไม่มี glow สี
 - ตัวอักษรปุ่ม ≥ 14px semibold · มุม pill (`rounded-full`) หรือ `rounded-xl` ในฟอร์ม
 - **Teal gradient `#35B0A6→#4CD6AA` = สงวนไว้** เป็น accent (เช่น active tab) — ไม่ใช่ปุ่ม CTA หลักอีกต่อไป
 - เหตุผล: contrast ดีกว่า (ขาวบนดำ 12.5:1 AAA), premium กว่า, ทำให้ teal มีพลังเด้งเมื่อโผล่
@@ -109,7 +109,7 @@ supersedes_partially: [[04_Buttons]], [[07_Web-Patterns]]
 - ขวา = การ์ดฟอร์มขาว · **label อยู่บนช่อง** (ไม่ใช่ floating) · input มีขอบ rounded-xl · ปุ่มดำ
 
 ### Footer
-- **Dark `#313937`** · link ขาว/60 · แถวแบรนด์ในเครือ (empeo · Venio · eTaxGo · IOMO · SignToGo) · social icons
+- **Dark `#1C1C22`** · link ขาว/60 · แถวแบรนด์ในเครือ (empeo · Venio · eTaxGo · IOMO · SignToGo) · social icons
 
 ---
 
@@ -151,8 +151,8 @@ supersedes_partially: [[04_Buttons]], [[07_Web-Patterns]]
 - **คุมบรรทัด heading:** ใส่ `text-wrap: balance` ที่ section heading + ให้ container กว้างพอ (features = `max-w-4xl`) — กัน heading **ตกบรรทัด/คำโดดท้าย (orphan)** ตอนตัวอักษร fluid ขยาย
 
 ### 🔘 Buttons (v3.1)
-- **Primary = Near-black `#1C1C22`** (เดิม v3 `#313937`) ทุกปุ่ม CTA — `.glow-button` / `.btn-dark` · hover `opacity .9`
-- ❌ `#313937` สงวนไว้เป็น **text/heading/footer/tab** เท่านั้น (ไม่ใช่สีปุ่ม)
+- **Primary = Near-black `#1C1C22`** ทุกอย่าง — ปุ่ม CTA, heading/text, footer · `.glow-button` / `.btn-dark` · hover `opacity .9`
+- ❌ `#313937` เลิกใช้ใน web UI ทั้งหมด (brand original เท่านั้น)
 - เหตุผล: contrast สูงขึ้น (ขาวบนดำ ~16:1), ดู premium, teal เด้งชัดขึ้น
 
 ### 🧩 Component patterns
