@@ -13,7 +13,6 @@ python3 sync-assets.py  # sync assets from design-system/ → assets/ + fonts/
 
 ```
 index.html          ← single source of truth for the page
-design-system/      ← design spec (colors, typography, buttons, patterns)
 assets/             ← web-optimized images (generated — ห้ามแก้มือ)
 fonts/              ← woff2 fonts (generated — ห้ามแก้มือ)
 legacy/             ← เก่า ห้ามแก้
@@ -22,7 +21,7 @@ sync-assets.py      ← เพิ่มรูปใหม่ → เพิ่ม
 
 ## Design system — อ่านก่อนแก้ UI
 
-`design-system/` คือแหล่งข้อมูลดีไซน์ทั้งหมด
+Design system อยู่ที่ `../design-system/` (root level — shared ทุก product)
 
 | ไฟล์ | เนื้อหา |
 |---|---|
@@ -68,7 +67,7 @@ sync-assets.py      ← เพิ่มรูปใหม่ → เพิ่ม
 | Pricing | white | outline (Free/Starter) / gradient (Growth) |
 | Add-ons | white | — |
 | CTA Banner | gradient teal→cyan→purple | glow-button dark |
-| FAQ | `#F1F5F9` | — |
+| FAQ | `#F1F5FA` | — |
 | Footer | `#1C1C22` | — |
 
 ## Git workflow
