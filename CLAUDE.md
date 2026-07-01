@@ -405,12 +405,15 @@ Nav link: default `#16161B` · active `#46BAA9` · 14px Medium
 
 ## Responsive Breakpoints
 
-| Breakpoint | Min width | Effect |
-|---|---|---|
-| mobile | < 768px | single column, button `width:280px` |
-| md | ≥ 768px | some sections unlock 2-col |
-| lg | ≥ 1024px | full 2-col layout |
-| xl | ≥ 1280px | container capped at `max-w-[1280px]` |
+| Breakpoint | Min width | Side padding | Notes |
+|---|---|---|---|
+| mobile | < 640px | 16px | Single column, scaled type |
+| sm+ | ≥ 640px | 40px | — |
+| tablet | 640–1023px | 40px | Single column stack |
+| desktop | ≥ 1024px | 40px | Two-column layout unlocks |
+| wide | ≥ 1280px | 40px | Container caps at 1200px content width |
+
+Container rule: `max-width: 1280px; margin: 0 auto; padding: 0 40px`
 
 Container: `max-w-[1280px] mx-auto px-10` (40px/side)
 
