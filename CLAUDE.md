@@ -601,7 +601,7 @@ Rename every asset before adding to the project. Pattern: `[section]-[type]-[var
 
 | Part | Values | Notes |
 |---|---|---|
-| `[section]` | `hero`, `features`, `hiw`, `pricing`, `cta`, `faq`, etc. | matches the page section |
+| `[section]` | `hero`, `recruitment`, `roster`, `assessment`, `cta`, `goal-cycle`, etc. | matches the page section |
 | `[type]` | `visual`, `icon`, `bg`, `thumbnail`, `mascot` | what the asset is |
 | `[variant]` | `-01`, `-02`, `-desktop`, `-mobile` | omit if only one asset of this type |
 
