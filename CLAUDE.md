@@ -546,7 +546,7 @@ download_assets(fileKey, nodeId, defaultFormat: "png", defaultScale: 3)
 - Figma renders at 1× by default. `get_screenshot` does **not** upscale beyond canvas size.
 - 3× PNG displayed at CSS `width: 100%` → browser always downscales → sharp on all DPR.
 - Set HTML intrinsic dimensions to the actual PNG size: `width="3600" height="2700"` (for a 1200×900 frame at 3×).
-- **Figma asset URLs expire in ~7 days** — if a production file contains `<img src="https://figma-alpha-api...">`, re-export before committing.
+- **Never use Figma asset URLs directly** — always export and save locally before adding to the project.
 
 ---
 
@@ -633,8 +633,7 @@ Vercel: Root Directory = `landing` (already configured).
 2. **CTA text is correct per page** — landing = `เริ่มใช้งานฟรี` / free-trial = `เริ่มใช้ Onebear ฟรี`.
 3. **Preview both pages in a real browser** before pushing — do not rely on code review alone.
 4. **Check asset paths** — no 404s.
-5. **Check for expired Figma URLs** — Figma asset URLs expire in ~7 days. If any `<img src="https://figma-alpha-api...">` exists, re-export before committing.
-6. **Commit to `feat/next` only** → PR → `main` (never commit directly to `main`).
+5. **Commit to `feat/next` only** → PR → `main` (never commit directly to `main`).
 
 ---
 
