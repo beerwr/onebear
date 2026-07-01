@@ -559,15 +559,14 @@ onebear/
   CLAUDE.md              ← single source of truth (this file)
   landing/
     index.html           ← main landing page — Vercel deploy (do not modify for WP)
+    wp/
+      index.html         ← WP version of main page (CSS/JS extracted)
+      style.css
+      script.js
     free-trial/
       index.html         ← free trial page — Vercel deploy
-    wp/
-      index/
-        index.html       ← WP standalone version (CSS/JS extracted)
-        style.css
-        script.js
-      free-trial/
-        index.html
+      wp/
+        index.html       ← WP version of free-trial
         style.css
         script.js
     assets/
@@ -632,42 +631,45 @@ Vercel: Root Directory = `landing` (already configured).
 
 Onebear has two parallel versions of each page:
 
-| Version | Location | Purpose |
-|---|---|---|
-| Standalone | `landing/index.html` | Vercel deploy — do not modify for WP |
-| WordPress | `landing/wp/index/` | Full-page HTML with CSS/JS separated for WP handoff |
+Each page has its own folder. `wp/` sits inside the page folder — sibling of the Vercel `index.html`.
 
 ### WP Folder Structure
 
 ```
-landing/wp/
-  index/
-    index.html     ← full standalone HTML (links to style.css + script.js)
-    style.css      ← all <style> blocks extracted here
-    script.js      ← all <script> blocks extracted here
+landing/
+  index.html              ← Vercel (do not touch)
+  wp/                     ← WP version of main page (sibling of index.html)
+    index.html            ← full standalone HTML (links to style.css + script.js)
+    style.css             ← all <style> blocks extracted here
+    script.js             ← all <script> blocks extracted here
   free-trial/
-    index.html
-    style.css
-    script.js
+    index.html            ← Vercel (do not touch)
+    wp/                   ← WP version of free-trial (sibling of free-trial/index.html)
+      index.html
+      style.css
+      script.js
 ```
 
 ### How to Create a WP Version
 
-1. Duplicate `landing/index.html` → `landing/wp/index/index.html`
+1. Duplicate the Vercel `index.html` → `wp/index.html` (inside the same page folder)
 2. Extract all `<style>` blocks → `style.css`, replace with `<link rel="stylesheet" href="style.css">`
 3. Extract all `<script>` blocks → `script.js`, replace with `<script src="script.js" defer></script>`
 4. Keep Tailwind CDN `<script>` tag in `<head>` as-is (required for utility classes)
-5. Update asset paths — `assets/` → `../../assets/` (two levels up from `wp/index/`)
-6. Update font paths — `fonts/` → `../../fonts/`
-7. Repeat for `free-trial/`
+5. Update asset paths based on depth (see table below)
+6. Repeat for each page
 
 ### Asset Paths in WP Version
 
-From `landing/wp/index/index.html`:
+| WP file | assets/ | fonts/ |
+|---|---|---|
+| `landing/wp/index.html` | `../assets/` | `../fonts/` |
+| `landing/free-trial/wp/index.html` | `../../assets/` | `../../fonts/` |
+
+Example:
 ```
-../../assets/logos/horizontal-green-logo.svg
-../../assets/mascot/cta-bear.png
-../../fonts/Gofive-Bold.woff2
+landing/wp/style.css          → url(../fonts/Gofive-Bold.woff2)
+landing/free-trial/wp/style.css → url(../../fonts/Gofive-Bold.woff2)
 ```
 
 ### What NOT to change
