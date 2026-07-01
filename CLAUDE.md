@@ -326,10 +326,10 @@ Text active: `#334155` · Text inactive: `#B0BEC5`
 ### Logo Usage
 
 ```
-Navbar (light bg)  → assets/logos/horizontal-green-logo.svg   h-[40px]
-Footer (dark bg)   → assets/logos/horizontal-white-logo.svg   h-[40px]
-Favicon            → assets/logos/favicon.svg  (must have rx="80" in both <rect> bg and <clipPath>)
-OG / social cover  → assets/logos/square-green-logo.png        (1:1 teal bg)
+Navbar (light bg)  → assets/logos/brand-logo-horizontal-green.svg   h-[40px]
+Footer (dark bg)   → assets/logos/brand-logo-horizontal-white.svg   h-[40px]
+Favicon            → assets/logos/brand-favicon.svg  (must have rx="80" in both <rect> bg and <clipPath>)
+OG / social cover  → assets/logos/brand-logo-square-green.png        (1:1 teal bg)
 ```
 
 > Every time favicon is updated from Figma → add `rx="80"` to both the `<rect>` background and `<clipPath>` before committing.
@@ -344,7 +344,7 @@ OG / social cover  → assets/logos/square-green-logo.png        (1:1 teal bg)
 
 - ID: `#cta` · Background: gradient teal→cyan (`--gradient-bg` class)
 - Layout: `text-center` with heading, subtext, `glow-button`, and mascot image positioned absolutely
-- Mascot (`cta-bear.png`): `absolute bottom-0 right-[...]` — anchored to bottom-right of banner
+- Mascot (`cta-mascot.png`): `absolute bottom-0 right-[...]` — anchored to bottom-right of banner
 - Triggered by `data-reveal` scroll animation
 
 ### Navbar
@@ -571,10 +571,10 @@ onebear/
         script.js
     assets/
       animation/         ← .mp4 videos + .gif
-      bg/                ← background images (hero-aurora.webp)
+      bg/                ← background images (hero-bg.webp)
       illustrations/     ← product visuals (AI section, shop-illustration)
       logos/             ← brand logos — SVG + PNG all variants
-      mascot/            ← bear mascot (cta-bear.png)
+      mascot/            ← bear mascot (cta-mascot.png)
       screenshots/       ← product UI screenshots
       unused/            ← unreferenced assets (do not deploy)
     fonts/               ← woff2 files (do not edit manually)
