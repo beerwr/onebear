@@ -332,14 +332,25 @@ OG / social cover  → assets/logos/square-green-logo.png        (1:1 teal bg)
 ```
 
 **Accordion JS (height + opacity animation, intercepts native toggle):**
+
+- Click listener on `el` (whole card), not `summary` — `s.style.pointerEvents='none'` prevents double-fire
+- Both expand and collapse use `requestAnimationFrame` — required so browser paints the starting height before transitioning
+- Collapse: set explicit height → rAF → transition to `0` → remove `[open]`
+- Expand: set `[open]` → read scrollHeight → rAF → transition to height → clear to `auto`
+
 ```javascript
 document.querySelectorAll('.faq-item').forEach(function(el){
   var s=el.querySelector('summary'), b=el.querySelector('div');
-  s.addEventListener('click',function(e){
+  s.style.pointerEvents='none';
+  el.addEventListener('click',function(e){
     e.preventDefault();
     if(el.open){
-      b.style.height=b.scrollHeight+'px'; b.style.opacity='0';
-      b.addEventListener('transitionend',function d(){ b.removeEventListener('transitionend',d); el.removeAttribute('open'); b.style.height=''; b.style.opacity=''; });
+      b.style.height=b.scrollHeight+'px';
+      requestAnimationFrame(function(){
+        b.style.height='0';
+        b.style.opacity='0';
+      });
+      b.addEventListener('transitionend',function d(ev){ if(ev.propertyName!=='height')return; b.removeEventListener('transitionend',d); el.removeAttribute('open'); b.style.height=''; b.style.opacity=''; });
     } else {
       el.setAttribute('open','');
       var h=b.scrollHeight; b.style.height='0'; b.style.opacity='0';
