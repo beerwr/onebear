@@ -595,7 +595,20 @@ onebear/
 | `assets/animation/` | video, GIF | `assets/animation/file` | `../assets/animation/file` |
 | `assets/bg/` | background images | `assets/bg/file` | `../assets/bg/file` |
 
-**Filename rule:** No spaces or `&` in filenames — use `-` instead (e.g. `features-crm-slip.png`).
+### Asset Naming Convention
+
+Rename every asset before adding to the project. Pattern: `[section]-[type]-[variant].[ext]`
+
+| Part | Values | Notes |
+|---|---|---|
+| `[section]` | `hero`, `features`, `hiw`, `pricing`, `cta`, `faq`, etc. | matches the page section |
+| `[type]` | `visual`, `icon`, `bg`, `thumbnail`, `mascot` | what the asset is |
+| `[variant]` | `-01`, `-02`, `-desktop`, `-mobile` | omit if only one asset of this type |
+
+**Rules:**
+- All lowercase, hyphen-separated — no spaces, no underscores, no camelCase
+- Rename before placing in the asset folder — never commit with generic names like `image001.png`, `export_final_v2.png`
+- `[variant]` is required when there are multiple assets of the same section+type (e.g. `features-visual-01.png`, `features-visual-02.png`)
 
 ### Asset Organization by Page
 
