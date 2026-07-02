@@ -539,6 +539,12 @@ Container rule: `max-width: 1280px; margin: 0 auto; padding: 0 40px`
 
 Always export Figma visuals at **3×** — never use lower resolution for production assets.
 
+**Format rule — always use WebP for raster images:**
+- Any incoming `.png` or `.jpg` must be converted to `.webp` before committing
+- Use `python3 -c "from PIL import Image; Image.open('in.png').save('out.webp', quality=85)"` (screenshots) or `quality=90` (illustrations/mascot)
+- Delete the original `.png`/`.jpg` after conversion — do not keep both
+- SVG and `.mp4`/`.webp` files are exempt
+
 ```
 download_assets(fileKey, nodeId, defaultFormat: "png", defaultScale: 3)
 ```
