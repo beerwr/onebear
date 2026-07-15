@@ -142,6 +142,7 @@
         #hsf-ig  { top:26%; left:7%; }
         #hsf-line{ top:57%; left:18%; }
         #hsf-fb  { top:22%; right:6%; }
+        #hsf-wa  { top:68%; right:10%; }
         /* AI section (dark, auto-rotate) */
         .ai-item{ background:transparent; border:1px solid transparent; transition:background-color .3s, border-color .3s; }
         .ai-item.ai-active{ background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.08); }
@@ -208,7 +209,7 @@
             * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
         }
 
-@font-face{ font-family:'Gofive'; src:url(../fonts/Gofive-Text.woff2) format('woff2'); font-weight:400; font-display:swap; }
-  @font-face{ font-family:'Gofive'; src:url(../fonts/Gofive-Medium.woff2) format('woff2'); font-weight:500; font-display:swap; }
-  @font-face{ font-family:'Gofive'; src:url(../fonts/Gofive-Semi_Bold.woff2) format('woff2'); font-weight:600; font-display:swap; }
-  @font-face{ font-family:'Gofive'; src:url(../fonts/Gofive-Bold.woff2) format('woff2'); font-weight:700; font-display:swap; }
+@font-face{ font-family:'Gofive'; src:url(../../fonts/Gofive-Text.woff2) format('woff2'); font-weight:400; font-display:swap; }
+  @font-face{ font-family:'Gofive'; src:url(../../fonts/Gofive-Medium.woff2) format('woff2'); font-weight:500; font-display:swap; }
+  @font-face{ font-family:'Gofive'; src:url(../../fonts/Gofive-Semi_Bold.woff2) format('woff2'); font-weight:600; font-display:swap; }
+  @font-face{ font-family:'Gofive'; src:url(../../fonts/Gofive-Bold.woff2) format('woff2'); font-weight:700; font-display:swap; }

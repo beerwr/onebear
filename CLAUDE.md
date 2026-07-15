@@ -477,11 +477,13 @@ document.querySelectorAll('.faq-item').forEach(function(el){
 
 ### Hero Floating Icons
 
-- Elements: `#hsf-ig`, `#hsf-line`, `#hsf-fb` · Skips if `prefers-reduced-motion: reduce`
+- Elements (landing only): `#hsf-ig`, `#hsf-line`, `#hsf-fb`, `#hsf-wa` · Skips if `prefers-reduced-motion: reduce`
+- Elements (free-trial only, split around the hero video frame): `#hsoc-fb`, `#hsoc-line`, `#hsoc-ig`, `#hsoc-wa` with `.hero-social-1/2/3/4` stagger classes
 - On load: staggered spring reveal — `.hsf-t` + `.hsf-in` classes, `450ms + i×200ms` delay per icon
-- On scroll: drift outward with `easeInCubic` over first 320px
-  - ig: `translate(180px, 50px) scale(0.8)` · line: `translate(150px, -40px) scale(0.8)` · fb: `translate(-180px, 50px) scale(0.8)`
+- On scroll (landing): drift outward with `easeInCubic` over first 320px
+  - ig: `translate(180px, 50px) scale(0.8)` · line: `translate(150px, -40px) scale(0.8)` · fb: `translate(-180px, 50px) scale(0.8)` · wa: `translate(-150px, -60px) scale(0.8)`
   - Opacity: `1 - t×1.3` (fades before fully scrolled)
+- WhatsApp icon is the provided brand SVG inlined as-is (self-contained circle + glyph, `#25D366` bg) — no separate wrapper `div` background needed, unlike FB/LINE/IG which use a plain glyph inside a colored circle `div`
 
 ### Scroll Reveal
 
@@ -505,9 +507,9 @@ document.querySelectorAll('.faq-item').forEach(function(el){
 
 ### Channel Icon Strip
 
-- IDs: `#strip-fb`, `#strip-line`, `#strip-ig` — circular platform icons
-- **Landing:** static, no scroll binding
-- **Free-trial only:** scroll-driven morph — hero icons drift into this strip using `easeInCubic` over first 320px of scroll
+- IDs: `#strip-fb`, `#strip-line`, `#strip-ig`, `#strip-wa` — circular platform icons
+- **Landing:** static, no scroll binding — plain `<span>` row, no IDs needed (icons never move)
+- **Free-trial only:** scroll-driven morph — hero icons drift into this strip using `easeInCubic` over first 320px of scroll; `IDS` array in the morph script must list every channel key (`['fb','line','ig','wa']`) and each key needs a matching `#hsoc-<key>` (hero) + `#strip-<key>` (strip) pair
 
 ---
 
@@ -540,7 +542,7 @@ Container rule: `max-width: 1280px; margin: 0 auto; padding: 0 40px`
 Always export Figma visuals at **3×** — never use lower resolution for production assets.
 
 **Format rule — always use WebP for raster images:**
-- Any incoming `.png` or `.jpg` must be converted to `.webp` before committing
+- Any incoming `.png` or `.jpg` must be converted to `.webp` before it goes into the project — regardless of source (Figma export, user-provided file, screenshot, etc.)
 - Use `python3 -c "from PIL import Image; Image.open('in.png').save('out.webp', quality=85)"` (screenshots) or `quality=90` (illustrations/mascot)
 - Delete the original `.png`/`.jpg` after conversion — do not keep both
 - SVG and `.mp4`/`.webp` files are exempt
@@ -561,26 +563,31 @@ download_assets(fileKey, nodeId, defaultFormat: "png", defaultScale: 3)
 ```
 onebear/
   CLAUDE.md              ← single source of truth (this file)
-  landing/
-    index.html           ← main landing page — Vercel deploy (do not modify for WP)
-    wp/
-      index.html         ← WP version of main page (CSS/JS extracted)
-      style.css
-      script.js
-    free-trial/
-      index.html         ← free trial page — Vercel deploy
+  website/
+    landing-page/
+      index.html           ← main landing page — Vercel deploy (do not modify for WP)
       wp/
-        index.html       ← WP version of free-trial
+        index.html         ← WP version of main page (CSS/JS extracted)
         style.css
         script.js
+      free-trial/
+        index.html         ← free trial page — Vercel deploy
+        wp/
+          index.html       ← WP version of free-trial
+          style.css
+          script.js
     assets/
-      animation/         ← .mp4 videos + .gif
-      bg/                ← background images (hero-bg.webp)
-      illustrations/     ← product visuals (AI section, shop-illustration)
-      logos/             ← brand logos — SVG + PNG all variants
-      mascot/            ← bear mascot (cta-mascot.png)
-      screenshots/       ← product UI screenshots
-      unused/            ← unreferenced assets (do not deploy)
+      shared/            ← used by 2+ pages — logos, mascot, illustrations, common screenshots
+        logos/
+        mascot/
+        illustrations/
+        screenshots/
+      landing-page/      ← only used by the main landing page
+        bg/              ← hero-bg.webp
+        screenshots/     ← hero-visual.webp
+      free-trial/        ← only used by the free-trial page
+        animation/       ← hero-visual.mp4
+      recyclebin/        ← unreferenced assets (do not deploy)
     fonts/               ← woff2 files (do not edit manually)
     legacy/              ← old files, do not touch
     server.js
@@ -588,16 +595,24 @@ onebear/
     vercel.json
 ```
 
+**Site folders:** every page lives under `website/landing-page/` — `index.html` is the main landing page, `free-trial/` is its own sub-page. `assets/` and `fonts/` sit one level up, at `website/` root.
+
+**Assets are split by which page uses them, not just by type:**
+- Used by 2+ pages (both landing and free-trial reference it) → `assets/shared/<type>/`
+- Used by only one page → `assets/<page-name>/<type>/` (folder name matches the page folder — `landing-page`, `free-trial`)
+- A new page → give it its own `assets/<page-name>/` folder for anything unique to it; only promote a file to `assets/shared/` once a second page actually uses it.
+
 ### Asset Path Convention
 
-| Folder | Contains | From `landing/` | From `landing/free-trial/` |
+| Asset | Scope | From `website/landing-page/` | From `website/landing-page/free-trial/` |
 |---|---|---|---|
-| `assets/logos/` | all logo variants | `assets/logos/file` | `../assets/logos/file` |
-| `assets/mascot/` | bear mascot images | `assets/mascot/file` | `../assets/mascot/file` |
-| `assets/illustrations/` | product visuals | `assets/illustrations/file` | `../assets/illustrations/file` |
-| `assets/screenshots/` | UI screenshots | `assets/screenshots/file` | `../assets/screenshots/file` |
-| `assets/animation/` | video, GIF | `assets/animation/file` | `../assets/animation/file` |
-| `assets/bg/` | background images | `assets/bg/file` | `../assets/bg/file` |
+| `assets/shared/logos/` | shared | `../assets/shared/logos/file` | `../../assets/shared/logos/file` |
+| `assets/shared/mascot/` | shared | `../assets/shared/mascot/file` | `../../assets/shared/mascot/file` |
+| `assets/shared/illustrations/` | shared | `../assets/shared/illustrations/file` | `../../assets/shared/illustrations/file` |
+| `assets/shared/screenshots/` | shared (features tabs) | `../assets/shared/screenshots/file` | `../../assets/shared/screenshots/file` |
+| `assets/landing-page/bg/` | landing only | `../assets/landing-page/bg/file` | — |
+| `assets/landing-page/screenshots/` | landing only (hero mockup) | `../assets/landing-page/screenshots/file` | — |
+| `assets/free-trial/animation/` | free-trial only (hero mockup video) | — | `../../assets/free-trial/animation/file` |
 
 ### Asset Naming Convention
 
@@ -616,20 +631,20 @@ Rename every asset before adding to the project. Pattern: `[section]-[type]-[var
 
 ### Asset Organization by Page
 
-- **Assets are scoped to the page they belong to** — each new page gets its own asset subfolder.
-- **Shared assets** (A/B test variants, assets from the same source) may live in a shared folder.
-- **When a new page is created** → create a dedicated asset folder. Do not dump into existing folders.
+- **Assets are scoped to the page they belong to** — each new page gets its own asset subfolder named after the page (e.g. `assets/free-trial/`).
+- **Shared assets** (used by 2+ pages, A/B test variants, assets from the same source) live in `assets/shared/`.
+- **When a new page is created** → create a dedicated `assets/<page-name>/` folder. Do not dump into existing folders or `assets/shared/` unless a second page already uses the file.
 
 ---
 
 ## How to Preview
 
 ```bash
-node server.js          # → http://localhost:4599
+node server.js          # → http://localhost:4599/landing-page/
 python3 sync-assets.py  # sync fonts + images
 ```
 
-Vercel: Root Directory = `landing` (already configured).
+Vercel: Root Directory = `website` (update in Vercel dashboard after the `landing` → `website` rename — this repo change alone does not update it).
 
 ---
 
@@ -652,7 +667,7 @@ Each page has its own folder. `wp/` sits inside the page folder — sibling of t
 ### WP Folder Structure
 
 ```
-landing/
+website/landing-page/
   index.html              ← Vercel (do not touch)
   wp/                     ← WP version of main page (sibling of index.html)
     index.html            ← full standalone HTML (links to style.css + script.js)
@@ -679,18 +694,18 @@ landing/
 
 | WP file | assets/ | fonts/ |
 |---|---|---|
-| `landing/wp/index.html` | `../assets/` | `../fonts/` |
-| `landing/free-trial/wp/index.html` | `../../assets/` | `../../fonts/` |
+| `website/landing-page/wp/index.html` | `../../assets/` | `../../fonts/` |
+| `website/landing-page/free-trial/wp/index.html` | `../../../assets/` | `../../../fonts/` |
 
 Example:
 ```
-landing/wp/style.css          → url(../fonts/Gofive-Bold.woff2)
-landing/free-trial/wp/style.css → url(../../fonts/Gofive-Bold.woff2)
+website/landing-page/wp/style.css          → url(../../fonts/Gofive-Bold.woff2)
+website/landing-page/free-trial/wp/style.css → url(../../../fonts/Gofive-Bold.woff2)
 ```
 
 ### What NOT to change
 
-- Do not touch `landing/index.html` or `landing/free-trial/index.html` — these are the Vercel source
+- Do not touch `website/landing-page/index.html` or `website/landing-page/free-trial/index.html` — these are the Vercel source
 - WP version is a copy — any design change must be applied to both standalone AND wp/ version
 - Do not remove Tailwind CDN from WP version
 
