@@ -389,7 +389,7 @@ Interactive and reusable components. Every new component must be documented here
 - Clicking anywhere on the card toggles — not just the header. `summary` has `pointer-events:none` (JS sets it) so clicks bubble to `el`. `cursor:pointer` on `.faq-item`.
 
 **Interaction states:**
-- Default: plain white card, no green
+- Default: plain white card, `border-transparent` (no visible border, no green) — keeps the border width reserved so hover doesn't shift layout
 - Hover: `border-color:#bfe9df` + shadow + text/chevron `#15A591`
 - Open: chevron rotates 180° only — no automatic green until hovered
 - Open + Hover: same as hover
