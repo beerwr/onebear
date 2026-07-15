@@ -42,104 +42,6 @@
   stagEls.forEach(function(el){ io.observe(el); });
 })();
 
-/* Scroll-driven: move actual hero icons (no clone) to channels strip */
-(function(){
-  if(matchMedia('(prefers-reduced-motion:reduce)').matches) return;
-  if(window.innerWidth<768) return;
-
-  var IDS=['fb','line','ig'];
-  var froms=IDS.map(function(id){ return document.getElementById('hsoc-'+id); });
-  var tos  =IDS.map(function(id){ return document.getElementById('strip-'+id); });
-  var container=document.getElementById('channels-icons');
-  if(!container||!froms[0]) return;
-
-  tos.forEach(function(el){ if(el) el.style.visibility='hidden'; });
-
-  var inited=false, done=false, fp=[], tp=[], landed=IDS.map(function(){ return false; });
-  function ease(t){ return t<.5?2*t*t:-1+(4-2*t)*t; }
-
-  function init(){
-    if(inited) return; inited=true;
-    /* Capture absolute positions before reparenting */
-    fp=froms.map(function(el){
-      var r=el.getBoundingClientRect();
-      return {cx:r.left+r.width/2, cy:r.top+r.height/2+window.scrollY, w:r.width};
-    });
-    tp=tos.map(function(el){
-      var r=el.getBoundingClientRect();
-      return {cx:r.left+r.width/2, cy:r.top+r.height/2+window.scrollY, w:r.width};
-    });
-    /* Lift each icon out of hero into body — position:fixed, lock size, use scale() */
-    froms.forEach(function(el,i){
-      var f=fp[i];
-      if(!f||f.w===0) return;
-      el.style.position='fixed';
-      el.style.zIndex='9998';
-      el.style.pointerEvents='none';
-      el.style.margin='0';
-      el.style.borderRadius='50%';
-      el.style.transformOrigin='center center';
-      el.style.willChange='transform,left,top';
-      /* Lock size at original — never change width/height again */
-      el.style.width=f.w+'px';
-      el.style.height=f.w+'px';
-      el.style.left=(f.cx-f.w/2)+'px';
-      el.style.top=(f.cy-f.w/2-window.scrollY)+'px';
-      document.body.appendChild(el);
-    });
-  }
-
-  function onScroll(){
-    if(done) return;
-    var sy=window.scrollY;
-    var cr=container.getBoundingClientRect();
-    var docTop=cr.top+sy;
-    /* rangeStart: latest of (quarter-viewport scroll) or (1 screen above channels) — prevents firing on page load */
-    var rangeStart=docTop-window.innerHeight;
-    var rangeEnd  =docTop-window.innerHeight*0.25;
-    var t=Math.max(0,Math.min(1,(sy-rangeStart)/(rangeEnd-rangeStart)));
-    if(t<=0){
-      /* Scrolled back above range — reset icons to hero starting position */
-      if(inited){
-        froms.forEach(function(el,i){
-          if(landed[i]||!fp[i]) return;
-          var f=fp[i];
-          el.style.left=(f.cx-f.w/2)+'px';
-          el.style.top=(f.cy-f.w/2-sy)+'px';
-          el.style.transform='scale(1)';
-        });
-      }
-      return;
-    }
-    if(!inited) init();
-
-    var allDone=true;
-    froms.forEach(function(el,i){
-      if(landed[i]||!fp[i]||fp[i].w===0) return;
-      var st=Math.max(0,Math.min(1,(t-i*.12)/(1-i*.12+.001)));
-      var se=ease(st);
-      var f=fp[i], tgt=tp[i];
-      var cx=f.cx+(tgt.cx-f.cx)*se;
-      var cy=f.cy+(tgt.cy-f.cy)*se;
-      var sc=1+(tgt.w/f.w-1)*se;   /* scale 1→(target/original), inner SVG scales too */
-      el.style.left=(cx-f.w/2)+'px';
-      el.style.top=(cy-f.w/2-sy)+'px';
-      el.style.transform='scale('+sc+')';
-      if(se>=.98){
-        el.style.display='none';
-        tos[i].style.visibility='';
-        landed[i]=true;
-      } else { allDone=false; }
-    });
-
-    if(t<1) allDone=false;
-    if(allDone){ done=true; window.removeEventListener('scroll',onScroll); }
-  }
-
-  window.addEventListener('scroll',onScroll,{passive:true});
-  setTimeout(function(){ tos.forEach(function(el){ if(el) el.style.visibility=''; }); },6000);
-})();
-
 (function(){
   var root=document.getElementById('ai'); if(!root) return;
   var items=[].slice.call(root.querySelectorAll('.ai-item'));
@@ -279,7 +181,8 @@
   var icons=[
     {el:document.getElementById('hsf-ig'),   tx:180,  ty:50},
     {el:document.getElementById('hsf-line'), tx:150,  ty:-40},
-    {el:document.getElementById('hsf-fb'),   tx:-180, ty:50}
+    {el:document.getElementById('hsf-fb'),   tx:-180, ty:50},
+    {el:document.getElementById('hsf-wa'),   tx:-150, ty:-60}
   ];
   if(!icons[0].el) return;
 
