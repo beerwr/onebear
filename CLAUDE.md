@@ -646,6 +646,8 @@ python3 sync-assets.py  # sync fonts + images
 
 Vercel: Root Directory = `website` (update in Vercel dashboard after the `landing` → `website` rename — this repo change alone does not update it).
 
+**Root URL rewrites required:** pages live under `website/landing-page/`, not at the `website/` root, so `/` and `/free-trial` have no file to serve without help. `website/vercel.json` has `rewrites` mapping `/` → `/landing-page/index.html` and `/free-trial` → `/landing-page/free-trial/index.html`. If a new top-level page/route is added under `landing-page/`, add a matching rewrite or it will 404 in production.
+
 ---
 
 ## Deploy Checklist
